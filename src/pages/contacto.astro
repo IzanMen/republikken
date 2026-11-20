@@ -1,0 +1,93 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Icon from '../components/Icon.astro';
+import CTA from '../components/CTA.astro';
+import { site, whatsapp } from '../data/config';
+---
+
+<Layout
+  title="Contacto y ubicación en Maó | Republikken"
+  description="Visita Republikken en C/ Doctor Camps 35, Maó. Espacios desde {{precio_despacho}} €/h + IVA. Habla con Fran al 652 505 948 o consulta por WhatsApp."
+  breadcrumbs={[{ name: 'Contacto', url: '/contacto' }]}
+>
+  <div class="wrap">
+    <div class="page-intro">
+      <h1>Contacta con Republikken en Maó.</h1>
+      <p>
+        Para una primera visita, una reserva o una idea que todavía está tomando forma. Tienes línea
+        directa con el propietario.
+      </p>
+    </div>
+    <div class="contact-grid">
+      <div class="contact-data">
+        <div>
+          <h2>Teléfono y WhatsApp</h2>
+          <a href={`tel:${site.phone}`} class="contact-phone" data-track="phone_click">
+            {site.phoneDisplay}
+          </a>
+          <p>
+            <a
+              href={whatsapp()}
+              class="text-link"
+              target="_blank"
+              rel="noopener noreferrer"
+              data-track="whatsapp_click"
+            >
+              Escribe a Fran <Icon name="chat" />
+            </a>
+          </p>
+        </div>
+        <div>
+          <h2>Correo electrónico</h2>
+          <a href={`mailto:${site.email}`}>{site.email}</a>
+        </div>
+        <div>
+          <h2>Dónde estamos</h2>
+          <p>
+            {site.address}
+            <br />
+            {site.postalCode} Maó, Menorca
+            <br />
+            Otra entrada: {site.secondEntrance}
+          </p>
+        </div>
+        <div>
+          <h2>Horario</h2>
+          <p>
+            Lunes a sábado
+            <br />
+            8:00–22:00
+            <br />
+            Domingos cerrado
+          </p>
+        </div>
+      </div>
+      <div class="contact-map">
+        <iframe
+          title="Ubicación de Republikken en C/ Doctor Camps 35, Maó"
+          src={`https://maps.google.com/maps?q=${site.geo.latitude},${site.geo.longitude}&z=16&output=embed`}
+          loading="lazy"
+          referrerpolicy="no-referrer-when-downgrade"
+          allowfullscreen
+        ></iframe>
+      </div>
+    </div>
+    <div class="related-band" style="margin-bottom:70px">
+      <div>
+        <p>Dos entradas al mismo espacio: Doctor Camps y Josep Anselm Clavé.</p>
+        <p style="font-size:10px;margin-top:8px">
+          Para aparcamiento, accesibilidad o indicaciones de acceso, consulta con Fran antes de
+          venir.
+        </p>
+      </div>
+      <a class="text-link" href={site.maps} target="_blank" rel="noopener noreferrer">
+        Cómo llegar <Icon name="diagonal" />
+      </a>
+    </div>
+  </div>
+  <CTA
+    title="Consulta la disponibilidad de nuestros espacios en Maó."
+    href="/reservar"
+    label="Consultar disponibilidad"
+  />
+</Layout>

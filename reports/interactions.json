@@ -1,0 +1,62 @@
+{
+  "checkedAt": "2026-11-20T16:31:03.976Z",
+  "scope": "Isolated JSDOM integration checks with mocked network; no real message, booking, payment or external form submission.",
+  "results": [
+    {
+      "name": "Mobile menu opens, Escape closes it and returns focus",
+      "pass": true
+    },
+    {
+      "name": "Calculator updates cost, saving and rejects invalid hours",
+      "pass": true
+    },
+    {
+      "name": "Booking respects deep link and updates outgoing resource and WhatsApp",
+      "pass": true
+    },
+    {
+      "name": "Unknown booking space safely falls back to the private office",
+      "pass": true
+    },
+    {
+      "name": "Quote requires core fields and privacy without making a request",
+      "pass": true
+    },
+    {
+      "name": "Quote checks workshop capacity and audience maximum",
+      "pass": true
+    },
+    {
+      "name": "Quote rejects invalid email, past dates and Sunday",
+      "pass": true
+    },
+    {
+      "name": "WhatsApp fallback prepares an encoded message, never pretends to send",
+      "pass": true
+    },
+    {
+      "name": "Honeypot blocks the outgoing request",
+      "pass": true
+    },
+    {
+      "name": "Configured form shows success only after HTTP confirmation",
+      "pass": true
+    },
+    {
+      "name": "Form HTTP failure preserves entered data and shows recovery",
+      "pass": true
+    },
+    {
+      "name": "Home and contact include Google Maps without interaction",
+      "pass": true
+    },
+    {
+      "name": "No analytics configuration means no tracker or unsolicited banner",
+      "pass": true
+    },
+    {
+      "name": "Configured analytics waits for consent; reject loads nothing",
+      "pass": true
+    }
+  ]
+}

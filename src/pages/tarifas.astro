@@ -1,0 +1,92 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Icon from '../components/Icon.astro';
+import FAQ from '../components/FAQ.astro';
+import CTA from '../components/CTA.astro';
+import { spaces, reserveUrl, commonFAQ, whatsapp } from '../data/config';
+const faqs = commonFAQ.slice(0, 3);
+---
+
+<Layout
+  title="Tarifas de despachos y salas en Maó | Republikken"
+  description="Despacho desde {{precio_despacho}} €/h, eventos desde {{precio_eventos}} €/h y fitness {{precio_fitness}} €/h, más IVA. Limpieza y climatización incluidas. Consulta tarifas y reserva."
+  faqs={faqs}
+  breadcrumbs={[{ name: 'Tarifas', url: '/tarifas' }]}
+>
+  <div class="wrap">
+    <div class="page-intro">
+      <h1>Precios de despachos y salas por horas en Maó.</h1>
+      <p>
+        Tres espacios, una misma manera de hacer las cosas. Alquiler por horas, sin permanencia y
+        con los servicios esenciales incluidos.
+      </p>
+    </div>
+    <div class="pricing-grid" data-track-prices>
+      {spaces
+        .filter((s) => s.site === 'mao')
+        .map((s, i) => (
+          <article class:list={['pricing-card', { featured: i === 0 }]}>
+            <h2>{s.name}</h2>
+            <span class="price-meta">{s.from ? 'Desde' : 'Tarifa por hora'}</span>
+            <p class="price-display">
+              {s.price} €<small>/h</small>
+            </p>
+            <p class="price-meta">+ IVA · Sin permanencia</p>
+            <ul>
+              {s.includes.map((item) => (
+                <li>
+                  <Icon name="check" />
+                  {item}
+                </li>
+              ))}
+            </ul>
+            <a href={reserveUrl(s.id)} class="button">
+              Ver disponibilidad <Icon name="diagonal" />
+            </a>
+          </article>
+        ))}
+    </div>
+    <div class="pricing-note">
+      <div>
+        <h3>Incluido en cada reserva.</h3>
+        <p>
+          Limpieza, suministros y climatización. Todos los precios de esta web son sin IVA:
+          comprueba el importe total y las condiciones en la plataforma antes de pagar.
+        </p>
+      </div>
+      <div>
+        <h3>Más horas. Una propuesta a tu medida.</h3>
+        <p>
+          Si vas a venir con regularidad, habla con Fran. Hay descuentos por volumen y tarifas
+          personalizables según las horas que necesites.
+        </p>
+        <a
+          class="text-link"
+          href={whatsapp('Hola, Fran. Me gustaría consultar una tarifa por volumen de horas.')}
+          target="_blank"
+          rel="noopener noreferrer"
+          data-track="whatsapp_click"
+        >
+          Consultar una tarifa personalizada <Icon />
+        </a>
+      </div>
+    </div>
+    <div class="quote-feature section" style="margin-top:45px">
+      <div>
+        <h2>Pide un presupuesto para tu evento o reunión de empresa.</h2>
+        <p>
+          Catering propio, montaje a medida, acompañamiento y combinación de espacios. Te preparamos
+          una propuesta según el evento, los asistentes y los servicios.
+        </p>
+      </div>
+      <div>
+        <p>La tarifa base de la sala no incluye estos servicios adicionales.</p>
+        <a class="button" href="/presupuesto">
+          Pedir presupuesto <Icon name="diagonal" />
+        </a>
+      </div>
+    </div>
+  </div>
+  <FAQ items={faqs} />
+  <CTA />
+</Layout>

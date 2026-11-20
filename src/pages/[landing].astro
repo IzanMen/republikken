@@ -1,0 +1,234 @@
+---
+import { Image } from 'astro:assets';
+import Layout from '../layouts/Layout.astro';
+import Icon from '../components/Icon.astro';
+import FAQ from '../components/FAQ.astro';
+import CTA from '../components/CTA.astro';
+import Calculator from '../components/Calculator.astro';
+import { landings } from '../data/landings';
+import { spaceById, priceLabel, whatsapp, reserveUrl, commonFAQ } from '../data/config';
+import office from '../assets/images/despacho-privado-mao.jpg';
+import event from '../assets/images/evento-profesional-republikken-mao.webp';
+import meeting from '../assets/images/sala-reuniones-republikken-mao.webp';
+import fitness from '../assets/images/entrenamiento-personal-republikken-mao.webp';
+export function getStaticPaths() {
+  return landings.map((landing) => ({ params: { landing: landing.slug }, props: { landing } }));
+}
+const { landing } = Astro.props;
+const space = spaceById(landing.space);
+const faqs = [...landing.faqs, commonFAQ[3], commonFAQ[4]];
+const events = landing.slug === 'eventos-formaciones';
+const landingMedia = {
+  profesionales: {
+    src: office,
+    alt: 'Despacho privado amueblado con mesa de madera en el centro de Maó',
+  },
+  'eventos-formaciones': {
+    src: event,
+    alt: 'Presentación profesional con ponentes y público en Republikken Maó',
+  },
+  'reuniones-empresas': {
+    src: meeting,
+    alt: 'Sala de reuniones de Republikken Maó preparada con mesas en forma de U',
+  },
+  'entrenadores-fitness': {
+    src: fitness,
+    alt: 'Entrenamiento personal con mancuernas en la sala de fitness de Republikken Maó',
+  },
+};
+const heroMedia = landingMedia[landing.slug as keyof typeof landingMedia];
+const schema = [
+  {
+    '@type': 'Service',
+    name: space.name,
+    description: space.detail,
+    provider: { '@id': `${Astro.site}#business` },
+    areaServed: { '@type': 'City', name: 'Maó' },
+    offers: {
+      '@type': 'Offer',
+      price: space.price,
+      priceCurrency: 'EUR',
+      url: new URL(reserveUrl(space.id), Astro.site).href,
+      priceSpecification: {
+        '@type': 'UnitPriceSpecification',
+        price: space.price,
+        priceCurrency: 'EUR',
+        unitText: 'hora',
+        valueAddedTaxIncluded: false,
+      },
+    },
+  },
+];
+---
+
+<Layout
+  title={landing.title}
+  description={landing.description}
+  faqs={faqs}
+  schema={schema}
+  breadcrumbs={[
+    {
+      name:
+        landing.slug === 'profesionales'
+          ? 'Profesionales'
+          : landing.slug === 'reuniones-empresas'
+            ? 'Reuniones y empresas'
+            : space.name,
+      url: `/${landing.slug}`,
+    },
+  ]}
+>
+  <section class="landing-hero wrap">
+    <div>
+      <h1 class="landing-heading">
+        {landing.heading}{' '}
+        <span>{landing.accent}</span>
+      </h1>
+      <p class="landing-intro">{landing.intro}</p>
+      <p class="landing-price">
+        {space.from ? 'Desde ' : ''}
+        {space.price} €<small> / hora + IVA</small>
+      </p>
+      <div class="actions">
+        <a class="button" href={events ? '/presupuesto' : reserveUrl(space.id)}>
+          {events ? 'Pedir presupuesto' : 'Ver disponibilidad'}
+          <Icon name="diagonal" />
+        </a>
+        <a
+          class="text-link"
+          href={
+            events
+              ? reserveUrl(space.id)
+              : whatsapp(
+                  `Hola, Fran. Quería consultar disponibilidad de ${space.name.toLowerCase()}.`,
+                )
+          }
+          target={events ? undefined : '_blank'}
+          rel={events ? undefined : 'noopener noreferrer'}
+          data-track={events ? 'reserve_click' : 'whatsapp_click'}
+          data-space={space.id}
+        >
+          {events ? 'Reservar la sala' : 'Habla con Fran'}
+          <Icon name={events ? 'arrow' : 'chat'} />
+        </a>
+      </div>
+      <p class="risk-line">
+        <Icon name="check" />
+        Sin permanencia · Limpieza y climatización incluidas
+      </p>
+    </div>
+    <div class="landing-photo">
+      <Image
+        src={heroMedia.src}
+        alt={heroMedia.alt}
+        width={750}
+        height={750}
+        widths={[400, 750, 1100]}
+        sizes="(max-width: 600px) 100vw, 48vw"
+        format="webp"
+        quality={82}
+        loading="eager"
+        fetchpriority="high"
+      />
+      <span class="photo-caption">{space.metric}</span>
+    </div>
+  </section>
+  <section class="equipment-strip" aria-label="Equipamiento incluido">
+    <div class="equipment-list wrap">
+      {space.includes.map((text, i) => (
+        <span>
+          <Icon name={['check', 'sun', 'people', 'check'][i]} />
+          {text}
+        </span>
+      ))}
+    </div>
+  </section>
+  <section class="section wrap">
+    <div class="section-heading">
+      <h2>{landing.sectionTitle}</h2>
+      <p>{landing.sectionIntro}</p>
+    </div>
+    <div class="use-grid">
+      {landing.uses.map((use, i) => (
+        <article class="use-item">
+          <span>0{i + 1}</span>
+          <h3>{use.title}</h3>
+          <p>{use.text}</p>
+        </article>
+      ))}
+    </div>
+  </section>
+  {events && (
+    <section class="wrap quote-feature">
+      <div>
+        <h2>Organizamos tu evento profesional a medida.</h2>
+        <p>
+          Desde un coffee break hasta una comida completa. Hablamos contigo para preparar el espacio
+          y acompañarte durante tu evento.
+        </p>
+        <a href="/presupuesto" class="button">
+          Cuéntanos tu evento <Icon name="diagonal" />
+        </a>
+      </div>
+      <div>
+        <ul>
+          <li>Catering propio y necesidades alimentarias</li>
+          <li>Montaje a medida y acompañamiento</li>
+          <li>Sala de yoga contigua para demostraciones</li>
+          <li>Despacho como sala auxiliar</li>
+        </ul>
+        <p>Servicios adicionales bajo presupuesto.</p>
+      </div>
+    </section>
+  )}
+  {(space.id === 'despacho' || space.id === 'eventos') && (
+    <div class="wrap section">
+      <Calculator space={space.id} />
+    </div>
+  )}
+  {space.id === 'fitness' && (
+    <section class="wrap quote-feature">
+      <div>
+        <h2>Alquila una sala profesional sin montar tu propio estudio.</h2>
+        <p>
+          Si quieres venir cada semana, hablamos de tus franjas y de una tarifa por volumen. También
+          podemos ayudar a dar visibilidad a tus clases.
+        </p>
+      </div>
+      <div>
+        <p>Consulta cómo presentar tu actividad en la web y en el Instagram de Republikken.</p>
+        <a
+          class="button"
+          href={whatsapp('Hola, Fran. Me gustaría dar clases de forma regular en Republikken.')}
+          target="_blank"
+          rel="noopener noreferrer"
+          data-track="whatsapp_click"
+        >
+          Hablemos de tus clases <Icon name="diagonal" />
+        </a>
+      </div>
+    </section>
+  )}
+  <div class="related-band wrap">
+    <p>
+      <a href={landing.related}>{landing.relatedText}</a>
+    </p>
+    <a class="text-link" href="/espacios">
+      Ver equipamiento y espacios <Icon />
+    </a>
+    <a class="text-link" href="/tarifas">
+      Todas las tarifas <Icon />
+    </a>
+  </div>
+  <FAQ items={faqs} />
+  <CTA
+    title={
+      events
+        ? 'Pide presupuesto para tu evento en Maó.'
+        : `Consulta disponibilidad de ${space.name.toLowerCase()} en Maó.`
+    }
+    text={`${priceLabel(space)}. Lunes a sábado, de 8:00 a 22:00.`}
+    href={events ? '/presupuesto' : reserveUrl(space.id)}
+    label={events ? 'Pedir presupuesto' : 'Consultar disponibilidad'}
+  />
+</Layout>

@@ -1,0 +1,487 @@
+{
+  "measuredAt": "2026-11-14T04:47:16.968Z",
+  "base": "http://localhost:4322",
+  "profile": "Lighthouse mobile default simulated throttling, local production preview",
+  "results": [
+    {
+      "route": "/como-funciona",
+      "scores": {
+        "performance": 100,
+        "accessibility": 100,
+        "best-practices": 100,
+        "seo": 100
+      },
+      "lcp": 758.6909,
+      "cls": 0.00005549582781163253,
+      "tbt": 0,
+      "failedAudits": [
+        {
+          "id": "network-dependency-tree-insight",
+          "title": "Network dependency tree"
+        },
+        {
+          "id": "render-blocking-insight",
+          "title": "Render-blocking requests"
+        }
+      ],
+      "environment": {
+        "networkUserAgent": "Mozilla/5.0 (Linux; Android 11; moto g power (2022)) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/152.0.0.0 Mobile Safari/537.36",
+        "hostUserAgent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/152.0.0.0 Safari/537.36",
+        "benchmarkIndex": 2296,
+        "credits": {
+          "axe-core": "4.14.0"
+        }
+      }
+    },
+    {
+      "route": "/contacto",
+      "scores": {
+        "performance": 100,
+        "accessibility": 100,
+        "best-practices": 100,
+        "seo": 100
+      },
+      "lcp": 756.0741,
+      "cls": 0,
+      "tbt": 0,
+      "failedAudits": [
+        {
+          "id": "network-dependency-tree-insight",
+          "title": "Network dependency tree"
+        },
+        {
+          "id": "render-blocking-insight",
+          "title": "Render-blocking requests"
+        }
+      ],
+      "environment": {
+        "networkUserAgent": "Mozilla/5.0 (Linux; Android 11; moto g power (2022)) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/152.0.0.0 Mobile Safari/537.36",
+        "hostUserAgent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/152.0.0.0 Safari/537.36",
+        "benchmarkIndex": 2178,
+        "credits": {
+          "axe-core": "4.14.0"
+        }
+      }
+    },
+    {
+      "route": "/entrenadores-fitness",
+      "scores": {
+        "performance": 100,
+        "accessibility": 100,
+        "best-practices": 100,
+        "seo": 100
+      },
+      "lcp": 755.7345,
+      "cls": 0.001627273652718738,
+      "tbt": 7.632749999999987,
+      "failedAudits": [
+        {
+          "id": "network-dependency-tree-insight",
+          "title": "Network dependency tree"
+        },
+        {
+          "id": "render-blocking-insight",
+          "title": "Render-blocking requests"
+        }
+      ],
+      "environment": {
+        "networkUserAgent": "Mozilla/5.0 (Linux; Android 11; moto g power (2022)) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/152.0.0.0 Mobile Safari/537.36",
+        "hostUserAgent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/152.0.0.0 Safari/537.36",
+        "benchmarkIndex": 2123,
+        "credits": {
+          "axe-core": "4.14.0"
+        }
+      }
+    },
+    {
+      "route": "/espacios",
+      "scores": {
+        "performance": 100,
+        "accessibility": 100,
+        "best-practices": 100,
+        "seo": 100
+      },
+      "lcp": 1361.53905,
+      "cls": 0.0000110639468247114,
+      "tbt": 0,
+      "failedAudits": [
+        {
+          "id": "lcp-discovery-insight",
+          "title": "LCP request discovery"
+        },
+        {
+          "id": "network-dependency-tree-insight",
+          "title": "Network dependency tree"
+        },
+        {
+          "id": "render-blocking-insight",
+          "title": "Render-blocking requests"
+        }
+      ],
+      "environment": {
+        "networkUserAgent": "Mozilla/5.0 (Linux; Android 11; moto g power (2022)) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/152.0.0.0 Mobile Safari/537.36",
+        "hostUserAgent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/152.0.0.0 Safari/537.36",
+        "benchmarkIndex": 2148.5,
+        "credits": {
+          "axe-core": "4.14.0"
+        }
+      }
+    },
+    {
+      "route": "/eventos-formaciones",
+      "scores": {
+        "performance": 99,
+        "accessibility": 100,
+        "best-practices": 100,
+        "seo": 100
+      },
+      "lcp": 758.017,
+      "cls": 0.001411604629991015,
+      "tbt": 105,
+      "failedAudits": [
+        {
+          "id": "network-dependency-tree-insight",
+          "title": "Network dependency tree"
+        },
+        {
+          "id": "render-blocking-insight",
+          "title": "Render-blocking requests"
+        }
+      ],
+      "environment": {
+        "networkUserAgent": "Mozilla/5.0 (Linux; Android 11; moto g power (2022)) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/152.0.0.0 Mobile Safari/537.36",
+        "hostUserAgent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/152.0.0.0 Safari/537.36",
+        "benchmarkIndex": 2393.5,
+        "credits": {
+          "axe-core": "4.14.0"
+        }
+      }
+    },
+    {
+      "route": "/guias/despacho-por-horas-o-local",
+      "scores": {
+        "performance": 100,
+        "accessibility": 100,
+        "best-practices": 100,
+        "seo": 100
+      },
+      "lcp": 759.7620999999999,
+      "cls": 0.0000110639468247114,
+      "tbt": 0,
+      "failedAudits": [
+        {
+          "id": "network-dependency-tree-insight",
+          "title": "Network dependency tree"
+        },
+        {
+          "id": "render-blocking-insight",
+          "title": "Render-blocking requests"
+        }
+      ],
+      "environment": {
+        "networkUserAgent": "Mozilla/5.0 (Linux; Android 11; moto g power (2022)) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/152.0.0.0 Mobile Safari/537.36",
+        "hostUserAgent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/152.0.0.0 Safari/537.36",
+        "benchmarkIndex": 2341,
+        "credits": {
+          "axe-core": "4.14.0"
+        }
+      }
+    },
+    {
+      "route": "/guias",
+      "scores": {
+        "performance": 100,
+        "accessibility": 100,
+        "best-practices": 100,
+        "seo": 100
+      },
+      "lcp": 756.4742000000001,
+      "cls": 0,
+      "tbt": 0,
+      "failedAudits": [
+        {
+          "id": "network-dependency-tree-insight",
+          "title": "Network dependency tree"
+        },
+        {
+          "id": "render-blocking-insight",
+          "title": "Render-blocking requests"
+        }
+      ],
+      "environment": {
+        "networkUserAgent": "Mozilla/5.0 (Linux; Android 11; moto g power (2022)) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/152.0.0.0 Mobile Safari/537.36",
+        "hostUserAgent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/152.0.0.0 Safari/537.36",
+        "benchmarkIndex": 2331.5,
+        "credits": {
+          "axe-core": "4.14.0"
+        }
+      }
+    },
+    {
+      "route": "/guias/junta-propietarios-mao",
+      "scores": {
+        "performance": 100,
+        "accessibility": 100,
+        "best-practices": 100,
+        "seo": 100
+      },
+      "lcp": 757.0663999999999,
+      "cls": 0.0000110639468247114,
+      "tbt": 0,
+      "failedAudits": [
+        {
+          "id": "network-dependency-tree-insight",
+          "title": "Network dependency tree"
+        },
+        {
+          "id": "render-blocking-insight",
+          "title": "Render-blocking requests"
+        }
+      ],
+      "environment": {
+        "networkUserAgent": "Mozilla/5.0 (Linux; Android 11; moto g power (2022)) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/152.0.0.0 Mobile Safari/537.36",
+        "hostUserAgent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/152.0.0.0 Safari/537.36",
+        "benchmarkIndex": 2324.5,
+        "credits": {
+          "axe-core": "4.14.0"
+        }
+      }
+    },
+    {
+      "route": "/guias/presentacion-producto-mao",
+      "scores": {
+        "performance": 100,
+        "accessibility": 100,
+        "best-practices": 100,
+        "seo": 100
+      },
+      "lcp": 757.2031999999999,
+      "cls": 0,
+      "tbt": 0,
+      "failedAudits": [
+        {
+          "id": "network-dependency-tree-insight",
+          "title": "Network dependency tree"
+        },
+        {
+          "id": "render-blocking-insight",
+          "title": "Render-blocking requests"
+        }
+      ],
+      "environment": {
+        "networkUserAgent": "Mozilla/5.0 (Linux; Android 11; moto g power (2022)) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/152.0.0.0 Mobile Safari/537.36",
+        "hostUserAgent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/152.0.0.0 Safari/537.36",
+        "benchmarkIndex": 2182.5,
+        "credits": {
+          "axe-core": "4.14.0"
+        }
+      }
+    },
+    {
+      "route": "/",
+      "scores": {
+        "performance": 100,
+        "accessibility": 100,
+        "best-practices": 100,
+        "seo": 100
+      },
+      "lcp": 1656.6284,
+      "cls": 0.0009425371820640948,
+      "tbt": 14.685799999999972,
+      "failedAudits": [
+        {
+          "id": "network-dependency-tree-insight",
+          "title": "Network dependency tree"
+        }
+      ],
+      "environment": {
+        "networkUserAgent": "Mozilla/5.0 (Linux; Android 11; moto g power (2022)) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/152.0.0.0 Mobile Safari/537.36",
+        "hostUserAgent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/152.0.0.0 Safari/537.36",
+        "benchmarkIndex": 2168.5,
+        "credits": {
+          "axe-core": "4.14.0"
+        }
+      }
+    },
+    {
+      "route": "/preguntas-frecuentes",
+      "scores": {
+        "performance": 100,
+        "accessibility": 100,
+        "best-practices": 100,
+        "seo": 100
+      },
+      "lcp": 755.5936999999999,
+      "cls": 0.0005744551248968553,
+      "tbt": 8.5,
+      "failedAudits": [
+        {
+          "id": "network-dependency-tree-insight",
+          "title": "Network dependency tree"
+        },
+        {
+          "id": "render-blocking-insight",
+          "title": "Render-blocking requests"
+        }
+      ],
+      "environment": {
+        "networkUserAgent": "Mozilla/5.0 (Linux; Android 11; moto g power (2022)) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/152.0.0.0 Mobile Safari/537.36",
+        "hostUserAgent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/152.0.0.0 Safari/537.36",
+        "benchmarkIndex": 2314.5,
+        "credits": {
+          "axe-core": "4.14.0"
+        }
+      }
+    },
+    {
+      "route": "/presupuesto",
+      "scores": {
+        "performance": 100,
+        "accessibility": 100,
+        "best-practices": 100,
+        "seo": 100
+      },
+      "lcp": 1007.0063,
+      "cls": 0.0000110639468247114,
+      "tbt": 0,
+      "failedAudits": [
+        {
+          "id": "network-dependency-tree-insight",
+          "title": "Network dependency tree"
+        },
+        {
+          "id": "render-blocking-insight",
+          "title": "Render-blocking requests"
+        }
+      ],
+      "environment": {
+        "networkUserAgent": "Mozilla/5.0 (Linux; Android 11; moto g power (2022)) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/152.0.0.0 Mobile Safari/537.36",
+        "hostUserAgent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/152.0.0.0 Safari/537.36",
+        "benchmarkIndex": 2338.5,
+        "credits": {
+          "axe-core": "4.14.0"
+        }
+      }
+    },
+    {
+      "route": "/profesionales",
+      "scores": {
+        "performance": 100,
+        "accessibility": 100,
+        "best-practices": 100,
+        "seo": 100
+      },
+      "lcp": 1507.0483,
+      "cls": 0.00163062195241569,
+      "tbt": 31,
+      "failedAudits": [
+        {
+          "id": "network-dependency-tree-insight",
+          "title": "Network dependency tree"
+        },
+        {
+          "id": "render-blocking-insight",
+          "title": "Render-blocking requests"
+        }
+      ],
+      "environment": {
+        "networkUserAgent": "Mozilla/5.0 (Linux; Android 11; moto g power (2022)) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/152.0.0.0 Mobile Safari/537.36",
+        "hostUserAgent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/152.0.0.0 Safari/537.36",
+        "benchmarkIndex": 2365,
+        "credits": {
+          "axe-core": "4.14.0"
+        }
+      }
+    },
+    {
+      "route": "/reservar",
+      "scores": {
+        "performance": 100,
+        "accessibility": 100,
+        "best-practices": 100,
+        "seo": 100
+      },
+      "lcp": 757.6237000000001,
+      "cls": 0,
+      "tbt": 0,
+      "failedAudits": [
+        {
+          "id": "network-dependency-tree-insight",
+          "title": "Network dependency tree"
+        },
+        {
+          "id": "render-blocking-insight",
+          "title": "Render-blocking requests"
+        }
+      ],
+      "environment": {
+        "networkUserAgent": "Mozilla/5.0 (Linux; Android 11; moto g power (2022)) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/152.0.0.0 Mobile Safari/537.36",
+        "hostUserAgent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/152.0.0.0 Safari/537.36",
+        "benchmarkIndex": 2430,
+        "credits": {
+          "axe-core": "4.14.0"
+        }
+      }
+    },
+    {
+      "route": "/reuniones-empresas",
+      "scores": {
+        "performance": 100,
+        "accessibility": 100,
+        "best-practices": 100,
+        "seo": 100
+      },
+      "lcp": 758.8438000000001,
+      "cls": 0.001627273652718738,
+      "tbt": 67,
+      "failedAudits": [
+        {
+          "id": "network-dependency-tree-insight",
+          "title": "Network dependency tree"
+        },
+        {
+          "id": "render-blocking-insight",
+          "title": "Render-blocking requests"
+        }
+      ],
+      "environment": {
+        "networkUserAgent": "Mozilla/5.0 (Linux; Android 11; moto g power (2022)) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/152.0.0.0 Mobile Safari/537.36",
+        "hostUserAgent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/152.0.0.0 Safari/537.36",
+        "benchmarkIndex": 2172.5,
+        "credits": {
+          "axe-core": "4.14.0"
+        }
+      }
+    },
+    {
+      "route": "/tarifas",
+      "scores": {
+        "performance": 100,
+        "accessibility": 100,
+        "best-practices": 100,
+        "seo": 100
+      },
+      "lcp": 756.4914000000001,
+      "cls": 0,
+      "tbt": 0,
+      "failedAudits": [
+        {
+          "id": "network-dependency-tree-insight",
+          "title": "Network dependency tree"
+        },
+        {
+          "id": "render-blocking-insight",
+          "title": "Render-blocking requests"
+        }
+      ],
+      "environment": {
+        "networkUserAgent": "Mozilla/5.0 (Linux; Android 11; moto g power (2022)) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/152.0.0.0 Mobile Safari/537.36",
+        "hostUserAgent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/152.0.0.0 Safari/537.36",
+        "benchmarkIndex": 2172.5,
+        "credits": {
+          "axe-core": "4.14.0"
+        }
+      }
+    }
+  ]
+}

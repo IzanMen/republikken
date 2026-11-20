@@ -1,0 +1,98 @@
+---
+import Logo from './Logo.astro';
+import Icon from './Icon.astro';
+import { site, whatsapp, spaces, spaceForPath, reserveUrl } from '../data/config';
+const currentSpace = spaceForPath(Astro.url.pathname);
+---
+
+{site.chamber.enabled && (
+  <aside class="chamber wrap">
+    <a href={site.chamber.href} target="_blank" rel="noopener noreferrer">
+      <img
+        src={site.chamber.image}
+        alt="Empresa asociada al Club Cámara Menorca"
+        width="120"
+        height="120"
+        loading="lazy"
+      />
+    </a>
+  </aside>
+)}
+<footer class="site-footer">
+  <div class="wrap">
+    <div class="footer-top">
+      <div>
+        <Logo />
+        <p>
+          Compartiendo ideas,
+          <br />
+          energía y espacio.
+        </p>
+      </div>
+      <div>
+        <h2>Tu espacio</h2>
+        {spaces.map((s) => (
+          <a href={s.slug}>{s.name}</a>
+        ))}
+        <a href="/reuniones-empresas">Reuniones y empresas</a>
+      </div>
+      <div>
+        <h2>Lo que necesitas saber</h2>
+        <a href="/tarifas">Tarifas</a>
+        <a href="/como-funciona">Cómo funciona</a>
+        <a href="/preguntas-frecuentes">Preguntas frecuentes</a>
+        <a href="/guias">Ideas y guías</a>
+        <a href="/presupuesto">Pedir presupuesto</a>
+      </div>
+      <div>
+        <h2>Nos vemos en Maó</h2>
+        <p>
+          {site.address}
+          <br />
+          {site.postalCode} Maó, Menorca
+        </p>
+        <a href={`tel:${site.phone}`} data-track="phone_click">
+          {site.phoneDisplay} <Icon name="diagonal" />
+        </a>
+        <a href={site.instagram} target="_blank" rel="noopener noreferrer">
+          Instagram <Icon name="diagonal" />
+        </a>
+        <p class="footer-hours">{site.hours}</p>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© {new Date().getFullYear()} Republikken Maó</span>
+      <div>
+        <a href="/aviso-legal">Aviso legal</a>
+        <a href="/privacidad">Privacidad</a>
+        <a href="/cookies">Cookies</a>
+        <button data-cookie-settings>Configurar cookies</button>
+      </div>
+      <span>Hecho para compartir.</span>
+    </div>
+  </div>
+</footer>
+<div class="mobile-booking">
+  <a class="button" href={reserveUrl(currentSpace?.id)}>
+    {currentSpace?.id === 'despacho'
+      ? 'Reservar el despacho'
+      : currentSpace
+        ? 'Reservar la sala'
+        : 'Reservar un espacio'}{' '}
+    <Icon name="diagonal" />
+  </a>
+  <a
+    class="mobile-whatsapp"
+    href={whatsapp(
+      currentSpace
+        ? `Hola, Fran. Quería consultar disponibilidad de ${currentSpace.name.toLowerCase()}.`
+        : undefined,
+    )}
+    target="_blank"
+    rel="noopener noreferrer"
+    aria-label="Consultar por WhatsApp"
+    data-track="whatsapp_click"
+  >
+    <Icon name="chat" />
+  </a>
+</div>

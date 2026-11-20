@@ -1,0 +1,71 @@
+---
+import { spaceById } from '../data/config';
+interface Props {
+  space?: string;
+}
+const { space = 'despacho' } = Astro.props;
+const item = spaceById(space);
+const events = space === 'eventos';
+---
+
+<section class="calculator" data-calculator data-rate={item.price} data-space={space}>
+  <div>
+    <h2>
+      {events
+        ? 'Calcula el precio base de tu sala para eventos.'
+        : 'Calcula cuánto cuesta alquilar el despacho por horas.'}
+    </h2>
+    <p>
+      {events
+        ? 'Compara el coste base de la sala con otra propuesta que tengas.'
+        : 'Compara las horas que necesitas con el coste mensual de mantener tu propio despacho.'}{' '}
+      Tú introduces las cifras; nosotros hacemos las cuentas.
+    </p>
+    <p>
+      Estimación con tarifa base, sin IVA. No incluye descuentos por volumen ni servicios
+      adicionales. El coste alternativo es una hipótesis editable, no un precio de mercado.
+    </p>
+  </div>
+  <div>
+    <div class="calculator-fields">
+      <div class="field">
+        <label for="calc-hours">{events ? 'Horas del evento' : 'Horas al mes'}</label>
+        <input
+          id="calc-hours"
+          name="hours"
+          type="number"
+          min="1"
+          max="500"
+          step="1"
+          value={events ? 4 : 16}
+          inputmode="numeric"
+          required
+        />
+      </div>
+      <div class="field">
+        <label for="calc-alternative">
+          {events ? 'Otra propuesta, sin IVA (€)' : 'Tu coste mensual, sin IVA (€)'}
+        </label>
+        <input
+          id="calc-alternative"
+          name="alternative"
+          type="number"
+          min="0"
+          max="100000"
+          step="1"
+          placeholder="Tu estimación"
+          inputmode="decimal"
+        />
+      </div>
+    </div>
+    <div aria-live="polite" aria-atomic="true">
+      <output class="calc-total" data-calc-total>
+        {item.price * (events ? 4 : 16)} €
+      </output>
+      <span class="calc-compare" data-calc-comparison>
+        Coste base en Republikken, sin IVA.
+      </span>
+    </div>
+    <p>Desde {item.price} €/hora + IVA. Tarifa final según reserva.</p>
+  </div>
+</section>

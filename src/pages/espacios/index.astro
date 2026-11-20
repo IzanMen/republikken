@@ -1,0 +1,116 @@
+---
+import { Image } from 'astro:assets';
+import Layout from '../../layouts/Layout.astro';
+import Icon from '../../components/Icon.astro';
+import CTA from '../../components/CTA.astro';
+import { spaces, priceLabel, reserveUrl } from '../../data/config';
+import office from '../../assets/images/despacho-privado-mao.jpg';
+import event from '../../assets/images/evento-formacion-republikken-mao.webp';
+import fitness from '../../assets/images/sala-yoga-fitness-republikken-mao.webp';
+const spaceMedia = {
+  despacho: {
+    src: office,
+    alt: 'Mesa de madera, sillas y pantalla en el despacho privado de Republikken',
+  },
+  eventos: {
+    src: event,
+    alt: 'Ponente durante una formación en la sala de eventos de Republikken Maó',
+  },
+  fitness: {
+    src: fitness,
+    alt: 'Sala de yoga y fitness de Republikken Maó con suelo de madera y espejos',
+  },
+  miranda: {
+    src: office,
+    alt: 'Despacho privado amueblado de Republikken',
+  },
+};
+const schema = spaces.map((s) => ({
+  '@type': 'Product',
+  name: s.name,
+  description: s.detail,
+  image: new URL('/og/espacios.png', Astro.site).href,
+  brand: { '@type': 'Brand', name: 'Republikken' },
+  offers: {
+    '@type': 'Offer',
+    price: s.price,
+    priceCurrency: 'EUR',
+    url: new URL(reserveUrl(s.id), Astro.site).href,
+    priceSpecification: {
+      '@type': 'UnitPriceSpecification',
+      price: s.price,
+      priceCurrency: 'EUR',
+      unitText: 'hora',
+      valueAddedTaxIncluded: false,
+    },
+  },
+}));
+---
+
+<Layout
+  title="Despachos y salas por horas en Maó | Republikken"
+  description="Conoce los espacios de Republikken en Maó: despacho desde {{precio_despacho}} €/h + IVA, sala para 70 personas y fitness privado. Consulta y reserva."
+  schema={schema}
+  breadcrumbs={[{ name: 'Los espacios', url: '/espacios' }]}
+>
+  <div class="wrap">
+    <div class="page-intro">
+      <h1>Despachos y salas por horas en Maó.</h1>
+      <p>
+        Espacios para trabajar, cuidarse y crecer en el centro de Maó. Cada uno con su carácter;
+        todos con limpieza, suministros y climatización incluidos.
+      </p>
+    </div>
+    {spaces.map((s, i) => (
+      <section id={s.id} class="space-detail">
+        <div class="space-detail-media">
+          <Image
+            src={spaceMedia[s.id].src}
+            alt={spaceMedia[s.id].alt}
+            width={750}
+            height={520}
+            widths={[400, 750, 1000]}
+            sizes="(max-width:600px) 90vw, 45vw"
+            format="webp"
+            quality={80}
+            loading={i === 0 ? 'eager' : 'lazy'}
+          />
+        </div>
+        <div>
+          <h2>{s.name}</h2>
+          <p>{s.detail}</p>
+          {s.id === 'eventos' && (
+            <p>
+              85 m², sin luz natural y con iluminación cuidada. Hasta 70 personas en auditorio o 24
+              con mesas. Combinable con la sala de yoga contigua y un despacho, bajo presupuesto.
+            </p>
+          )}
+          {s.id === 'fitness' && (
+            <p>
+              Para entrenamiento personal, yoga, pilates suelo y movimiento en grupos reducidos.
+              Consulta el aforo y las cantidades de material según tu actividad.
+            </p>
+          )}
+          <ul>
+            {s.includes.map((item) => (
+              <li>
+                <Icon name="check" />
+                {item}
+              </li>
+            ))}
+          </ul>
+          <p class="price-line">{priceLabel(s)}</p>
+          <div class="actions">
+            <a href={reserveUrl(s.id)} class="button">
+              Ver disponibilidad <Icon name="diagonal" />
+            </a>
+            <a href={s.slug} class="text-link">
+              Conoce el espacio <Icon />
+            </a>
+          </div>
+        </div>
+      </section>
+    ))}
+  </div>
+  <CTA title="Reserva un despacho o sala por horas en Maó." />
+</Layout>

@@ -1,0 +1,63 @@
+---
+import { Image } from 'astro:assets';
+import office from '../assets/images/despacho-privado-mao.jpg';
+import event from '../assets/images/evento-formacion-republikken-mao.webp';
+import fitness from '../assets/images/clase-yoga-republikken-mao.webp';
+import Icon from './Icon.astro';
+import { spaces, priceLabel } from '../data/config';
+
+const cardMedia = {
+  despacho: {
+    src: office,
+    alt: 'Despacho privado con mesa de madera y sillas en Republikken Maó',
+  },
+  eventos: {
+    src: event,
+    alt: 'Formación profesional con ponente y público en la sala de eventos de Republikken Maó',
+  },
+  fitness: {
+    src: fitness,
+    alt: 'Clase de yoga en la sala privada de movimiento de Republikken Maó',
+  },
+  miranda: {
+    src: office,
+    alt: 'Despacho privado amueblado de Republikken',
+  },
+};
+---
+
+<div class="space-cards">
+  {spaces
+    .filter((s) => s.site === 'mao')
+    .map((s, i) => (
+      <a class="space-card" href={s.slug}>
+        <div class="space-card-image">
+          <Image
+            src={cardMedia[s.id].src}
+            alt={cardMedia[s.id].alt}
+            width={640}
+            height={460}
+            format="webp"
+            quality={80}
+            sizes="(max-width: 700px) 90vw, 30vw"
+            widths={[360, 640]}
+            loading="lazy"
+          />
+          <span class="space-index">
+            0{i + 1} / {s.shortName}
+          </span>
+          <span class="space-card-arrow">
+            <Icon name="diagonal" />
+          </span>
+        </div>
+        <div class="space-card-title">
+          <h3>{s.name}</h3>
+        </div>
+        <p>{s.lead}</p>
+        <div class="space-card-bottom">
+          <span>{s.metric}</span>
+          <strong>{priceLabel(s)}</strong>
+        </div>
+      </a>
+    ))}
+</div>

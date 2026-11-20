@@ -1,0 +1,17 @@
+---
+import Cube from './Cube.astro';
+interface Props {
+  negative?: boolean;
+  compact?: boolean;
+}
+const { negative = false, compact = false } = Astro.props;
+---
+
+<a href="/" class:list={['logo', { negative }]}>
+  <Cube />
+  <span>
+    <span class="wordmark">REPUBLIKKEN</span>
+    {!compact && <span class="logo-caption">MAÓ · MENORCA</span>}
+    <span class="sr-only"> · Inicio</span>
+  </span>
+</a>

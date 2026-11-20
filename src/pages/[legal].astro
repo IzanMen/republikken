@@ -1,0 +1,41 @@
+---
+import Layout from '../layouts/Layout.astro';
+import { legalPages } from '../data/legal';
+import { site } from '../data/config';
+export function getStaticPaths() {
+  return legalPages.map((page) => ({ params: { legal: page.slug }, props: { page } }));
+}
+const { page } = Astro.props;
+---
+
+<Layout
+  title={`${page.title} | Republikken Maó`}
+  description={page.description}
+  noindex={!site.legalVerified}
+  breadcrumbs={[{ name: page.title, url: `/${page.slug}` }]}
+>
+  <article class="wrap">
+    <div class="page-intro">
+      <h1>{page.title}</h1>
+    </div>
+    <div class="prose">
+      {!site.legalVerified && (
+        <aside class="legal-notice">
+          <strong>Borrador pendiente de revisión.</strong> La identificación del titular y los
+          términos definitivos deben completarse antes de la publicación comercial.
+        </aside>
+      )}
+      {page.sections.map((section) => (
+        <section>
+          <h2>{section.title}</h2>
+          <p>{section.text}</p>
+        </section>
+      ))}
+      {page.slug === 'cookies' && (
+        <button class="button" data-cookie-settings>
+          Configurar cookies
+        </button>
+      )}
+    </div>
+  </article>
+</Layout>

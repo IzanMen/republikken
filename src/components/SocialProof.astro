@@ -1,0 +1,23 @@
+---
+import { site } from '../data/config';
+const { enabled, testimonials, brands } = site.socialProof;
+---
+
+{enabled && (testimonials.length > 0 || brands.length > 0) && (
+  <section class="section wrap social-proof">
+    <h2>Profesionales y proyectos que trabajan en Republikken.</h2>
+    <div class="use-grid">
+      {testimonials.map((item) => (
+        <figure>
+          <blockquote>{item.quote}</blockquote>
+          <figcaption>{item.author}</figcaption>
+        </figure>
+      ))}
+    </div>
+    <div class="brand-list">
+      {brands.map((brand) => (
+        <img src={brand.image} alt={brand.name} width="140" height="70" loading="lazy" />
+      ))}
+    </div>
+  </section>
+)}

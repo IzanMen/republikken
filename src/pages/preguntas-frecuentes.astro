@@ -1,0 +1,39 @@
+---
+import Layout from '../layouts/Layout.astro';
+import FAQ from '../components/FAQ.astro';
+import CTA from '../components/CTA.astro';
+import { commonFAQ } from '../data/config';
+import { landings } from '../data/landings';
+const sections = [
+  { title: 'Reservas y condiciones.', items: commonFAQ },
+  { title: 'Tu despacho.', items: landings[0].faqs },
+  { title: 'Eventos y reuniones.', items: [...landings[1].faqs, landings[2].faqs[0]] },
+  { title: 'Yoga y fitness.', items: landings[3].faqs },
+];
+const faqs = sections.flatMap((s) => s.items);
+---
+
+<Layout
+  title="Preguntas frecuentes sobre reservas | Republikken"
+  description="Resuelve tus dudas sobre despachos, eventos y fitness en Maó. Desde {{precio_despacho}} €/h + IVA, sin permanencia. Consulta las condiciones y reserva."
+  faqs={faqs}
+  breadcrumbs={[{ name: 'Preguntas frecuentes', url: '/preguntas-frecuentes' }]}
+>
+  <div class="wrap">
+    <div class="page-intro">
+      <h1>Preguntas frecuentes sobre espacios y reservas.</h1>
+      <p>
+        Precios, espacios, actividades y reservas. Estas son las preguntas que conviene resolver
+        antes de elegir tus horas.
+      </p>
+    </div>
+  </div>
+  {sections.map((s) => (
+    <FAQ title={s.title} items={s.items} />
+  ))}
+  <CTA
+    title="Contacta con Republikken si tienes más preguntas."
+    href="/contacto"
+    label="Habla con Fran"
+  />
+</Layout>

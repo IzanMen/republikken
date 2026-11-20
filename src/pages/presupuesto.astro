@@ -1,0 +1,217 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Cube from '../components/Cube.astro';
+import Icon from '../components/Icon.astro';
+import { rates } from '../data/rates';
+import { site, whatsapp } from '../data/config';
+---
+
+<Layout
+  title="Pide presupuesto para tu evento en Maó | Republikken"
+  description="Sala de eventos en Maó desde {{precio_eventos}} €/h + IVA. Añade catering, montaje o espacios auxiliares. Cuéntanos tu idea y pide presupuesto a Fran."
+  breadcrumbs={[{ name: 'Pedir presupuesto', url: '/presupuesto' }]}
+>
+  <div class="wrap">
+    <div class="page-intro">
+      <h1>Pide presupuesto para tu evento en Maó.</h1>
+      <p>
+        Unas preguntas para entender lo que necesitas. Fran revisará tu propuesta y hablará contigo
+        para concretar disponibilidad, servicios y precio.
+      </p>
+    </div>
+    <div class="form-layout">
+      <form class="quote-form" id="quote-form" data-endpoint={site.formEndpoint} novalidate>
+        <fieldset>
+          <legend>
+            <span>01</span>¿Qué tienes en mente?
+          </legend>
+          <div class="form-grid">
+            <div class="field">
+              <label for="event-type">Tipo de evento *</label>
+              <select id="event-type" name="tipo" required>
+                <option value="">Elige una opción</option>
+                <option>Presentación de producto</option>
+                <option>Formación o taller</option>
+                <option>Reunión de empresa</option>
+                <option>Junta de propietarios</option>
+                <option>Encuentro profesional o cultural</option>
+                <option>Otro evento profesional</option>
+              </select>
+              <span class="error-text" aria-live="polite"></span>
+            </div>
+            <div class="field">
+              <label for="event-date">Fecha prevista</label>
+              <input type="date" id="event-date" name="fecha" />
+              <small class="form-note">Puedes dejarla abierta si aún no la sabes.</small>
+              <span class="error-text" aria-live="polite"></span>
+            </div>
+            <div class="field">
+              <label for="attendees">Número de asistentes *</label>
+              <input
+                id="attendees"
+                name="asistentes"
+                type="number"
+                min="1"
+                max="70"
+                step="1"
+                inputmode="numeric"
+                placeholder="Por ejemplo, 20"
+                required
+              />
+              <span class="error-text" aria-live="polite"></span>
+            </div>
+            <div class="field">
+              <label for="format">Formato *</label>
+              <select id="format" name="formato" required>
+                <option value="">Elige un montaje</option>
+                <option value="Auditorio">Auditorio · hasta 70 personas</option>
+                <option value="Taller con mesas">Taller con mesas · hasta 24</option>
+                <option value="Por definir">Lo decidimos juntos</option>
+              </select>
+              <span class="error-text" aria-live="polite"></span>
+            </div>
+            <div class="field full">
+              <label for="hours">Horario o duración aproximada</label>
+              <input
+                id="hours"
+                name="horario"
+                type="text"
+                maxlength="150"
+                placeholder="Por ejemplo, de 10:00 a 14:00"
+              />
+            </div>
+          </div>
+        </fieldset>
+        <fieldset>
+          <legend>
+            <span>02</span>¿Qué necesitas añadir?
+          </legend>
+          <p class="form-note">Opcional. Los servicios adicionales se presupuestan aparte.</p>
+          <div class="check-grid">
+            {[
+              'Catering',
+              'Montaje a medida',
+              'Acompañamiento',
+              'Sala de yoga auxiliar',
+              'Despacho auxiliar',
+            ].map((s) => (
+              <label class="check-option">
+                <input type="checkbox" name="servicios" value={s} />
+                {s}
+              </label>
+            ))}
+          </div>
+          <div class="field" style="margin-top:22px">
+            <label for="details">Algo más que debamos saber</label>
+            <textarea
+              id="details"
+              name="detalles"
+              maxlength="2000"
+              rows="4"
+              placeholder="Cuéntanos tu idea, las necesidades técnicas o de catering…"
+            ></textarea>
+            <small class="form-note">
+              No incluyas información médica ni otros datos sensibles.
+            </small>
+          </div>
+        </fieldset>
+        <fieldset>
+          <legend>
+            <span>03</span>Seguimos en contacto.
+          </legend>
+          <div class="form-grid">
+            <div class="field">
+              <label for="name">Tu nombre *</label>
+              <input id="name" name="nombre" autocomplete="name" maxlength="100" required />
+              <span class="error-text" aria-live="polite"></span>
+            </div>
+            <div class="field">
+              <label for="company">Empresa o proyecto</label>
+              <input id="company" name="empresa" autocomplete="organization" maxlength="120" />
+            </div>
+            <div class="field">
+              <label for="email">Correo electrónico *</label>
+              <input
+                id="email"
+                name="email"
+                type="email"
+                autocomplete="email"
+                maxlength="180"
+                required
+              />
+              <span class="error-text" aria-live="polite"></span>
+            </div>
+            <div class="field">
+              <label for="phone">Teléfono</label>
+              <input
+                id="phone"
+                name="telefono"
+                type="tel"
+                autocomplete="tel"
+                maxlength="30"
+                inputmode="tel"
+              />
+            </div>
+          </div>
+        </fieldset>
+        <div class="honey" aria-hidden="true">
+          <label for="website">Deja este campo vacío</label>
+          <input id="website" name="_gotcha" tabindex="-1" autocomplete="off" />
+        </div>
+        <label class="privacy-check">
+          <input type="checkbox" name="privacidad" id="privacy" required />
+          <span>
+            He leído la <a href="/privacidad">información de privacidad</a> y acepto que se utilicen
+            mis datos para atender esta solicitud. *
+          </span>
+        </label>
+        <p class="error-text" id="privacy-error" aria-live="polite"></p>
+        <button class="button" type="submit">
+          {site.formEndpoint ? 'Enviar solicitud' : 'Preparar solicitud por WhatsApp'}
+          <Icon name="diagonal" />
+        </button>
+        <p class="form-note" style="margin-top:15px">
+          {site.formEndpoint
+            ? 'Esta solicitud no confirma ni bloquea una reserva.'
+            : 'Prepararemos un mensaje con tus datos. Podrás revisarlo y enviarlo a Fran desde WhatsApp. Esta solicitud no confirma una reserva.'}
+        </p>
+        <div class="form-status" id="form-status" role="status" tabindex="-1" hidden></div>
+        <noscript>
+          <p>
+            Para preparar el formulario, activa JavaScript o{' '}
+            <a href={whatsapp('Hola, Fran. Me gustaría pedir presupuesto para un evento.')}>
+              cuéntanos tu evento por WhatsApp
+            </a>
+            .
+          </p>
+        </noscript>
+      </form>
+      <aside class="form-aside">
+        <Cube />
+        <h2>Prepara tu evento directamente con Fran.</h2>
+        <p>Fran te ayuda a encontrar el montaje y los servicios que encajan con tu idea.</p>
+        <hr />
+        <p>
+          <strong>85 m² de posibilidades</strong>
+          <br />
+          Hasta 70 personas en auditorio.
+          <br />
+          24 personas con mesas.
+        </p>
+        <p>
+          <strong>Desde {rates.eventos} €/h + IVA</strong>
+          <br />
+          Proyector, pantalla, altavoz y wifi.
+          <br />
+          Limpieza y climatización incluidas.
+        </p>
+        <hr />
+        <p>Si prefieres hablarlo:</p>
+        <a class="text-link" href={`tel:${site.phone}`} data-track="phone_click">
+          {site.phoneDisplay}
+          <Icon name="phone" />
+        </a>
+      </aside>
+    </div>
+  </div>
+</Layout>

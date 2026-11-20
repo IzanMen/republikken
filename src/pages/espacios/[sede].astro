@@ -1,0 +1,26 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import CTA from '../../components/CTA.astro';
+import { SHOW_PLAZA_MIRANDA, spaces, priceLabel } from '../../data/config';
+export function getStaticPaths() {
+  return SHOW_PLAZA_MIRANDA ? [{ params: { sede: 'plaza-miranda' } }] : [];
+}
+const space = spaces.find((s) => s.site === 'miranda')!;
+---
+
+<Layout
+  title="Despacho Plaza Miranda en Maó | Republikken"
+  description="Un despacho privado junto al puerto de Maó desde {{precio_despacho}} €/h + IVA. Planta baja y patio común. Consulta disponibilidad."
+  breadcrumbs={[
+    { name: 'Espacios', url: '/espacios' },
+    { name: 'Plaza Miranda', url: '/espacios/plaza-miranda' },
+  ]}
+>
+  <section class="section wrap">
+    <h1>Alquiler de {space.name.toLowerCase()} en Maó.</h1>
+    <p>{space.detail}</p>
+    <p>{priceLabel(space)}</p>
+    <p>Junto al puerto y al Claustro del Carmen. Consulta con Fran las indicaciones de acceso.</p>
+  </section>
+  <CTA href="/reservar?espacio=miranda" label="Consultar disponibilidad" />
+</Layout>

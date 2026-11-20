@@ -1,0 +1,35 @@
+---
+import { getCollection } from 'astro:content';
+import Layout from '../../layouts/Layout.astro';
+import Icon from '../../components/Icon.astro';
+import CTA from '../../components/CTA.astro';
+const guides = await getCollection('guias');
+---
+
+<Layout
+  title="Ideas y guías para tus espacios en Maó | Republikken"
+  description="Ideas para trabajar, organizar eventos y celebrar reuniones en Maó. Espacios desde {{precio_despacho}} €/h + IVA. Encuentra tu próxima idea."
+  breadcrumbs={[{ name: 'Ideas y guías', url: '/guias' }]}
+>
+  <div class="wrap">
+    <div class="page-intro">
+      <h1>Guías para alquilar despachos y salas en Maó.</h1>
+      <p>
+        Unas ideas prácticas para elegir dónde trabajar, preparar un encuentro o dar forma a tu
+        próximo proyecto.
+      </p>
+    </div>
+    <div class="guide-grid">
+      {guides.map((g) => (
+        <a href={`/guias/${g.id}`} class="guide-card">
+          <h2>{g.data.title}</h2>
+          <p>{g.data.category} · {g.data.readingTime}</p>
+          <span class="text-link">
+            Leer la guía <Icon />
+          </span>
+        </a>
+      ))}
+    </div>
+  </div>
+  <CTA />
+</Layout>

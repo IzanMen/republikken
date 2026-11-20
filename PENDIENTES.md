@@ -1,0 +1,31 @@
+# Pendientes para el lanzamiento comercial
+
+La web está construida y puede revisarse localmente. Esta lista distingue datos no aportados de integraciones que sí tienen una salida operativa.
+
+| Pendiente | Estado y ubicación | Qué hace falta |
+| --- | --- | --- |
+| Recursos de Cobot | `[CONFIRMAR CON FRAN]` `src/data/config.ts`, `site.cobot` | URLs individuales, habilitación de reserva externa, franjas, IVA, condiciones y recorrido de pago real. El enlace general `/book` está verificado. |
+| Oferta antigua en Cobot | `[CONFIRMAR CON FRAN]` plataforma externa | La portada pública ofrece pases/bonos compartidos que el brief pone en pausa. Revisar su visibilidad con Fran. La nueva web no los promociona. |
+| Acceso y cancelaciones | `[CONFIRMAR CON FRAN]` FAQ y `/como-funciona` | Llaves/código, llegada, cambios, plazos, reembolsos, penalizaciones y posibles mínimos. No se han inventado condiciones. La web remite a Fran antes de confirmar. |
+| Datos legales del titular | `[CONFIRMAR CON FRAN]` `src/data/legal.ts`, `site.legalVerified` | Razón social/nombre, NIF, domicilio legal, datos registrales, condiciones y revisión de privacidad/cookies. Borradores visibles y `noindex`. |
+| Proveedor de formularios | `[CONFIRMAR CON FRAN]` `PUBLIC_FORM_ENDPOINT` | Si se quiere envío directo, proveedor, destinatario, antispam de servidor, acuerdos y retención. Hoy se prepara un mensaje de WhatsApp revisable por el visitante. |
+| Plazo de respuesta | `[CONFIRMAR CON FRAN]` copy de presupuesto | No se promete un número de horas. Añadir solo un plazo que el negocio pueda cumplir. |
+| Logo original | `[PLACEHOLDER]` `Logo.astro`, `public/brand/logo.svg` | SVG y uso autorizado de Skyload. El cubo se construye conforme a la guía; nombre provisional en Syncopate. |
+| Fotos de eventos y fitness | `[PLACEHOLDER]` `SpaceArt.astro` | Sesión profesional sin personas identificables no autorizadas. Actualmente hay composiciones geométricas de marca, no interiores inventados. |
+| Fotos de la web actual | `[CONFIRMAR CON FRAN]` `src/assets/images/`, `FUENTES.md` | Confirmar vigencia y derechos de reutilización del material ya publicado por el propio negocio. No hay stock ni fotos generadas que simulen instalaciones. |
+| Material del rodaje `/material/` | No se aportó al directorio | Añadir archivos si se desean incorporar; revisar carteles de terceros y autorización de personas. |
+| Retrato de Fran | `[PLACEHOLDER]` `Host.astro` | Foto aprobada. El bloque actual usa un monograma editorial y contacto real, sin persona ficticia. |
+| Material fitness | `[CONFIRMAR CON FRAN]` ficha fitness | Inventario completo, cantidades, pesos y aforo según actividad. Se publica únicamente la lista aportada. |
+| Aparcamiento y accesibilidad | `[CONFIRMAR CON FRAN]` contacto, guía de juntas | Opciones concretas, accesibilidad por entrada, ascensor/escalones y condiciones de llegada. No se afirma acceso adaptado ni parking garantizado. |
+| Código postal | Contrastado: **07703** | El brief propone 07701, pero la página oficial de contacto y su enlace de mapa indican 07703. Configurado centralmente; confirmar al revisar NAP/Google Business Profile. |
+| Horario | Brief: lunes–sábado, 8–22 h | La web antigua menciona siete días. Se prioriza el brief. Confirmar coincidencia con Cobot y ficha de Google. |
+| Instagram y email | Contrastados con canales oficiales | `@republikkenmao`, `contacto@republikkenmao.com`. Confirmar que siguen siendo los canales atendidos. |
+| Sello Club Cámara | `[PLACEHOLDER]` desactivado en `site.chamber` | Falta el archivo oficial «Sello Club Cámara HTML.txt» o SVG y enlace autorizado. Confirmar pertenencia antes de activarlo. El PDF de instrucciones no acredita por sí solo la asociación. |
+| Testimonios y marcas | `[PLACEHOLDER]` arrays vacíos y componente desactivado | Opiniones reales, autoría y permiso; logos autorizados. No se han inventado reseñas ni contadores. |
+| Analítica | Desactivada | Elegir GA4/Plausible, configurar ID/dominio, eventos y política con inventario real. Comprobar consentimiento en producción. |
+| Plaza Miranda | **Oculta** | Completar datos de sede, fotos y Cobot antes de activar la bandera. No aparece en HTML, JS público, JSON-LD ni sitemap. |
+| Catalán e inglés | Arquitectura preparada | Traducciones reales, rutas y equivalencias hreflang antes de activar locales. |
+| Dominio y producción | Proyecto local, sin publicación | Confirmar hosting y dominio. Configurar cabeceras, HTTPS, caché, compresión y página 404; revisar redirecciones desde la web antigua. |
+| Validación externa de schema | Validación local automatizada realizada | Después del despliegue, revisar Google Rich Results / Schema Validator con las URLs públicas y Search Console. No se afirma una certificación de Google. |
+
+Los marcadores editoriales se concentran en configuración, textos legales y este documento. Las páginas comerciales explican cómo resolver cada duda sin mostrar etiquetas técnicas al visitante.

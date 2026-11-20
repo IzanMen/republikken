@@ -1,0 +1,46 @@
+---
+import { getCollection, render } from 'astro:content';
+import Layout from '../../layouts/Layout.astro';
+import CTA from '../../components/CTA.astro';
+export async function getStaticPaths() {
+  const guides = await getCollection('guias');
+  return guides.map((guide) => ({ params: { id: guide.id }, props: { guide } }));
+}
+const { guide } = Astro.props;
+const { Content } = await render(guide);
+const schema = [
+  {
+    '@type': 'Article',
+    headline: guide.data.title,
+    description: guide.data.description,
+    author: { '@type': 'Organization', name: 'Republikken Maó' },
+    publisher: { '@id': `${Astro.site}#organization` },
+    image: new URL(`/og/guias-${guide.id}.png`, Astro.site).href,
+    mainEntityOfPage: new URL(`/guias/${guide.id}`, Astro.site).href,
+    inLanguage: 'es',
+  },
+];
+---
+
+<Layout
+  title={guide.data.title}
+  description={guide.data.description}
+  schema={schema}
+  breadcrumbs={[
+    { name: 'Ideas y guías', url: '/guias' },
+    { name: guide.data.title, url: `/guias/${guide.id}` },
+  ]}
+>
+  <article class="wrap">
+    <header class="page-intro">
+      <h1 style="font-family:var(--font);font-weight:400;letter-spacing:-1.5px">
+        {guide.data.title}
+      </h1>
+      <p>{guide.data.category} · {guide.data.readingTime}</p>
+    </header>
+    <div class="prose">
+      <Content />
+    </div>
+  </article>
+  <CTA href={guide.data.cta} label={guide.data.ctaLabel} />
+</Layout>

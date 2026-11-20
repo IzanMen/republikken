@@ -1,0 +1,26 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Cube from '../components/Cube.astro';
+import Icon from '../components/Icon.astro';
+---
+
+<Layout
+  title="Aquí todavía no hay espacio · 404 | Republikken"
+  description="Esta página no existe. Vuelve al inicio de Republikken y encuentra tu despacho, sala de eventos o espacio de fitness en Maó."
+  noindex
+>
+  <section class="not-found wrap">
+    <Cube />
+    <h1>Página no encontrada.</h1>
+    <p>Error 404</p>
+    <p>Pero tenemos uno para lo que tienes en mente.</p>
+    <div class="actions">
+      <a href="/" class="button">
+        Volver al inicio <Icon />
+      </a>
+      <a href="/espacios" class="text-link">
+        Ver los espacios <Icon name="diagonal" />
+      </a>
+    </div>
+  </section>
+</Layout>

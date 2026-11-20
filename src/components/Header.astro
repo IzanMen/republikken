@@ -1,0 +1,53 @@
+---
+import Logo from './Logo.astro';
+import Icon from './Icon.astro';
+import { spaceForPath, reserveUrl } from '../data/config';
+const path = Astro.url.pathname;
+const currentSpace = spaceForPath(path);
+const links = [
+  ['/espacios', 'Los espacios'],
+  ['/como-funciona', 'Cómo funciona'],
+  ['/tarifas', 'Tarifas'],
+  ['/contacto', 'Contacto'],
+];
+---
+
+<header class="site-header">
+  <div class="header-inner wrap">
+    <Logo />
+    <nav class="desktop-nav" aria-label="Navegación principal">
+      {links.map(([href, label]) => (
+        <a href={href} aria-current={path === href ? 'page' : undefined}>
+          {label}
+        </a>
+      ))}
+    </nav>
+    <a class="button header-cta" href={reserveUrl(currentSpace?.id)}>
+      Reserva tu espacio <Icon name="diagonal" />
+    </a>
+    <button
+      class="menu-toggle"
+      aria-label="Abrir menú"
+      aria-controls="mobile-menu"
+      aria-expanded="false"
+    >
+      <Icon name="menu" />
+    </button>
+  </div>
+  <nav id="mobile-menu" class="mobile-menu" aria-label="Navegación móvil" hidden>
+    {links.map(([href, label]) => (
+      <a href={href}>
+        {label}
+        <Icon />
+      </a>
+    ))}
+    <a href="/presupuesto">
+      Pedir presupuesto
+      <Icon />
+    </a>
+    <a href="/reservar">
+      Reservar un espacio
+      <Icon />
+    </a>
+  </nav>
+</header>

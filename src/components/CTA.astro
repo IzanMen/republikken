@@ -1,0 +1,42 @@
+---
+import Icon from './Icon.astro';
+import Cube from './Cube.astro';
+import { whatsapp } from '../data/config';
+interface Props {
+  title?: string;
+  text?: string;
+  href?: string;
+  label?: string;
+}
+const {
+  title = 'Reserva tu despacho o sala por horas en Maó.',
+  text = 'El espacio lo ponemos nosotros. El siguiente paso es tuyo.',
+  href = '/reservar',
+  label = 'Reserva tu espacio',
+} = Astro.props;
+---
+
+<section class="closing-cta">
+  <div class="wrap closing-inner">
+    <div>
+      <h2>{title}</h2>
+      <p>{text}</p>
+      <div class="actions">
+        <a class="button button-light" href={href}>
+          {label}
+          <Icon name="diagonal" />
+        </a>
+        <a
+          class="light-link"
+          href={whatsapp()}
+          target="_blank"
+          rel="noopener noreferrer"
+          data-track="whatsapp_click"
+        >
+          Habla con Fran <Icon name="chat" />
+        </a>
+      </div>
+    </div>
+    <Cube class="closing-cube" />
+  </div>
+</section>

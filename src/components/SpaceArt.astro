@@ -1,0 +1,19 @@
+---
+import Cube from './Cube.astro';
+interface Props {
+  type: string;
+}
+const { type } = Astro.props;
+---
+
+<div
+  class:list={['space-art', type === 'fitness' ? 'art-fitness' : 'art-events']}
+  aria-hidden="true"
+>
+  <div class="art-grid"></div>
+  <Cube />
+  <span class="art-number">{type === 'fitness' ? 'ENERGÍA' : 'IDEAS'}</span>
+  <div class="art-caption">
+    {type === 'fitness' ? 'ESPACIO PARA MOVERTE' : 'ESPACIO PARA COMPARTIR'}
+  </div>
+</div>

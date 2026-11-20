@@ -1,0 +1,99 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Icon from '../components/Icon.astro';
+import { spaces, site, priceLabel, whatsapp } from '../data/config';
+const first = spaces[0];
+---
+
+<Layout
+  title="Reserva tu espacio por horas en Maó | Republikken"
+  description="Elige despacho, sala de eventos o fitness en Maó. Desde {{precio_despacho}} €/h + IVA. Consulta disponibilidad y completa tu reserva en Cobot."
+  breadcrumbs={[{ name: 'Reservar', url: '/reservar' }]}
+>
+  <div class="wrap">
+    <div class="page-intro">
+      <h1>Reserva un despacho o sala por horas en Maó.</h1>
+      <p>
+        Elige dónde quieres estar. Después podrás consultar la disponibilidad y completar tu reserva
+        en Cobot, nuestra plataforma de reservas.
+      </p>
+    </div>
+    <div class="booking-layout" data-booking>
+      <fieldset class="booking-options">
+        <legend>¿Qué espacio necesitas?</legend>
+        {spaces.map((s, i) => (
+          <label class="booking-option">
+            <input
+              type="radio"
+              name="space"
+              value={s.id}
+              checked={i === 0}
+              data-name={s.name}
+              data-price={priceLabel(s)}
+              data-cobot={site.cobot[s.id] || site.cobot.general}
+              data-direct={!!site.cobot[s.id]}
+            />
+            <span>
+              <strong>{s.name}</strong>
+              <small>
+                {s.metric} · {priceLabel(s)}
+              </small>
+            </span>
+          </label>
+        ))}
+      </fieldset>
+      <section class="booking-summary">
+        <h2 data-booking-name>{first.name}</h2>
+        <p class="booking-price" data-booking-price>
+          {priceLabel(first)}
+        </p>
+        <p>
+          Limpieza, suministros y climatización incluidos.
+          <br />
+          Lunes a sábado · 8:00–22:00
+        </p>
+        <hr />
+        <a
+          class="button button-light"
+          data-booking-link
+          data-track="reserve_click"
+          data-space={first.id}
+          href={site.cobot[first.id] || site.cobot.general}
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          Ver disponibilidad en Cobot <Icon name="diagonal" />
+        </a>
+        <p style="font-size:10px;margin-top:15px" data-booking-hint>
+          Se abre el calendario general de salas en otra pestaña. Selecciona allí el recurso; si no
+          aparece, consulta con Fran.
+        </p>
+        <a
+          class="light-link"
+          data-booking-whatsapp
+          href={whatsapp(
+            `Hola, Fran. Quería consultar disponibilidad de ${first.name.toLowerCase()}.`,
+          )}
+          target="_blank"
+          rel="noopener noreferrer"
+          data-track="whatsapp_click"
+        >
+          Consultar a Fran por WhatsApp <Icon name="chat" />
+        </a>
+      </section>
+    </div>
+    <div class="related-band" style="margin-bottom:70px">
+      <p>¿Un evento con catering, montaje o varios espacios?</p>
+      <a class="text-link" href="/presupuesto">
+        Pide una propuesta a medida <Icon />
+      </a>
+    </div>
+    <noscript>
+      <p>
+        También puedes{' '}
+        <a href={site.cobot.general}>consultar directamente el calendario de salas</a> o llamar al{' '}
+        {site.phoneDisplay}.
+      </p>
+    </noscript>
+  </div>
+</Layout>

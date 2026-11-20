@@ -1,0 +1,283 @@
+{
+  "checkedAt": "2026-11-20T16:31:03.075Z",
+  "pages": [
+    {
+      "route": "/404.html",
+      "title": "Aquí todavía no hay espacio · 404 | Republikken",
+      "titleLength": 47,
+      "descriptionLength": 124,
+      "schemaTypes": [
+        "Organization",
+        "LocalBusiness",
+        "WebSite"
+      ],
+      "faqCount": 0
+    },
+    {
+      "route": "/aviso-legal",
+      "title": "Aviso legal | Republikken Maó",
+      "titleLength": 29,
+      "descriptionLength": 81,
+      "schemaTypes": [
+        "Organization",
+        "LocalBusiness",
+        "WebSite",
+        "BreadcrumbList"
+      ],
+      "faqCount": 0
+    },
+    {
+      "route": "/como-funciona",
+      "title": "Cómo reservar un espacio en Maó | Republikken",
+      "titleLength": 45,
+      "descriptionLength": 128,
+      "schemaTypes": [
+        "Organization",
+        "LocalBusiness",
+        "WebSite",
+        "BreadcrumbList",
+        "FAQPage"
+      ],
+      "faqCount": 4
+    },
+    {
+      "route": "/contacto",
+      "title": "Contacto y ubicación en Maó | Republikken",
+      "titleLength": 41,
+      "descriptionLength": 130,
+      "schemaTypes": [
+        "Organization",
+        "LocalBusiness",
+        "WebSite",
+        "BreadcrumbList"
+      ],
+      "faqCount": 0
+    },
+    {
+      "route": "/cookies",
+      "title": "Cookies y preferencias | Republikken Maó",
+      "titleLength": 40,
+      "descriptionLength": 97,
+      "schemaTypes": [
+        "Organization",
+        "LocalBusiness",
+        "WebSite",
+        "BreadcrumbList"
+      ],
+      "faqCount": 0
+    },
+    {
+      "route": "/entrenadores-fitness",
+      "title": "Alquiler de sala de yoga y fitness en Maó | Republikken",
+      "titleLength": 55,
+      "descriptionLength": 125,
+      "schemaTypes": [
+        "Organization",
+        "LocalBusiness",
+        "WebSite",
+        "BreadcrumbList",
+        "FAQPage",
+        "Service"
+      ],
+      "faqCount": 6
+    },
+    {
+      "route": "/espacios",
+      "title": "Despachos y salas por horas en Maó | Republikken",
+      "titleLength": 48,
+      "descriptionLength": 132,
+      "schemaTypes": [
+        "Organization",
+        "LocalBusiness",
+        "WebSite",
+        "BreadcrumbList",
+        "Product",
+        "Product",
+        "Product"
+      ],
+      "faqCount": 0
+    },
+    {
+      "route": "/eventos-formaciones",
+      "title": "Alquiler de sala para eventos en Maó | Republikken",
+      "titleLength": 50,
+      "descriptionLength": 128,
+      "schemaTypes": [
+        "Organization",
+        "LocalBusiness",
+        "WebSite",
+        "BreadcrumbList",
+        "FAQPage",
+        "Service"
+      ],
+      "faqCount": 6
+    },
+    {
+      "route": "/guias/despacho-por-horas-o-local",
+      "title": "Despacho por horas o local propio en Menorca",
+      "titleLength": 44,
+      "descriptionLength": 127,
+      "schemaTypes": [
+        "Organization",
+        "LocalBusiness",
+        "WebSite",
+        "BreadcrumbList",
+        "Article"
+      ],
+      "faqCount": 0
+    },
+    {
+      "route": "/guias",
+      "title": "Ideas y guías para tus espacios en Maó | Republikken",
+      "titleLength": 52,
+      "descriptionLength": 123,
+      "schemaTypes": [
+        "Organization",
+        "LocalBusiness",
+        "WebSite",
+        "BreadcrumbList"
+      ],
+      "faqCount": 0
+    },
+    {
+      "route": "/guias/junta-propietarios-mao",
+      "title": "Organizar una junta de propietarios fuera de la finca",
+      "titleLength": 53,
+      "descriptionLength": 125,
+      "schemaTypes": [
+        "Organization",
+        "LocalBusiness",
+        "WebSite",
+        "BreadcrumbList",
+        "Article"
+      ],
+      "faqCount": 0
+    },
+    {
+      "route": "/guias/presentacion-producto-mao",
+      "title": "Cómo preparar una presentación de producto en Maó",
+      "titleLength": 49,
+      "descriptionLength": 137,
+      "schemaTypes": [
+        "Organization",
+        "LocalBusiness",
+        "WebSite",
+        "BreadcrumbList",
+        "Article"
+      ],
+      "faqCount": 0
+    },
+    {
+      "route": "/",
+      "title": "Coworking en Maó, Menorca · Por horas | Republikken",
+      "titleLength": 51,
+      "descriptionLength": 140,
+      "schemaTypes": [
+        "Organization",
+        "LocalBusiness",
+        "WebSite",
+        "FAQPage"
+      ],
+      "faqCount": 3
+    },
+    {
+      "route": "/preguntas-frecuentes",
+      "title": "Preguntas frecuentes sobre reservas | Republikken",
+      "titleLength": 49,
+      "descriptionLength": 134,
+      "schemaTypes": [
+        "Organization",
+        "LocalBusiness",
+        "WebSite",
+        "BreadcrumbList",
+        "FAQPage"
+      ],
+      "faqCount": 18
+    },
+    {
+      "route": "/presupuesto",
+      "title": "Pide presupuesto para tu evento en Maó | Republikken",
+      "titleLength": 52,
+      "descriptionLength": 134,
+      "schemaTypes": [
+        "Organization",
+        "LocalBusiness",
+        "WebSite",
+        "BreadcrumbList"
+      ],
+      "faqCount": 0
+    },
+    {
+      "route": "/privacidad",
+      "title": "Privacidad | Republikken Maó",
+      "titleLength": 28,
+      "descriptionLength": 104,
+      "schemaTypes": [
+        "Organization",
+        "LocalBusiness",
+        "WebSite",
+        "BreadcrumbList"
+      ],
+      "faqCount": 0
+    },
+    {
+      "route": "/profesionales",
+      "title": "Alquiler de despacho por horas en Maó | Republikken",
+      "titleLength": 51,
+      "descriptionLength": 132,
+      "schemaTypes": [
+        "Organization",
+        "LocalBusiness",
+        "WebSite",
+        "BreadcrumbList",
+        "FAQPage",
+        "Service"
+      ],
+      "faqCount": 6
+    },
+    {
+      "route": "/reservar",
+      "title": "Reserva tu espacio por horas en Maó | Republikken",
+      "titleLength": 49,
+      "descriptionLength": 125,
+      "schemaTypes": [
+        "Organization",
+        "LocalBusiness",
+        "WebSite",
+        "BreadcrumbList"
+      ],
+      "faqCount": 0
+    },
+    {
+      "route": "/reuniones-empresas",
+      "title": "Alquiler de sala de reuniones en Maó | Republikken",
+      "titleLength": 50,
+      "descriptionLength": 132,
+      "schemaTypes": [
+        "Organization",
+        "LocalBusiness",
+        "WebSite",
+        "BreadcrumbList",
+        "FAQPage",
+        "Service"
+      ],
+      "faqCount": 6
+    },
+    {
+      "route": "/tarifas",
+      "title": "Tarifas de despachos y salas en Maó | Republikken",
+      "titleLength": 49,
+      "descriptionLength": 134,
+      "schemaTypes": [
+        "Organization",
+        "LocalBusiness",
+        "WebSite",
+        "BreadcrumbList",
+        "FAQPage"
+      ],
+      "faqCount": 3
+    }
+  ],
+  "errors": [],
+  "scope": "Local HTML, assets, links, SEO lengths, JSON-LD shape/content, hidden location. Not an external Google Rich Results certification."
+}

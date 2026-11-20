@@ -1,0 +1,210 @@
+---
+import { Image } from 'astro:assets';
+import Layout from '../layouts/Layout.astro';
+import Cube from '../components/Cube.astro';
+import Icon from '../components/Icon.astro';
+import SpaceCards from '../components/SpaceCards.astro';
+import Steps from '../components/Steps.astro';
+import Host from '../components/Host.astro';
+import CTA from '../components/CTA.astro';
+import FAQ from '../components/FAQ.astro';
+import office from '../assets/images/despacho-privado-mao.jpg';
+import common from '../assets/images/zonas-comunes-republikken.jpg';
+import { commonFAQ, site, spaceById } from '../data/config';
+import { homeCopy } from '../data/copy';
+import SocialProof from '../components/SocialProof.astro';
+const faqs = commonFAQ.slice(0, 3);
+---
+
+<Layout title={homeCopy.title} description={homeCopy.description} faqs={faqs}>
+  <section class="hero wrap">
+    <div class="hero-topline">
+      <span class="location-small">
+        <Icon name="pin" />
+        Maó, Menorca
+      </span>
+    </div>
+    <h1 class="hero-heading">
+      {homeCopy.headline}{' '}
+      <br />
+      <span class="line-two">
+        <span class="accent">{homeCopy.accent}</span>
+        <Cube class="hero-cube" />
+      </span>
+    </h1>
+    <div class="hero-intro">
+      <p>{homeCopy.intro}</p>
+      <div class="actions">
+        <span class="hero-price">
+          Desde <strong>{spaceById('despacho').price} €/h</strong> + IVA
+        </span>
+        <a class="button" href="#tu-espacio">
+          Reserva tu espacio <Icon name="diagonal" />
+        </a>
+      </div>
+    </div>
+    <div class="hero-media">
+      <div class="hero-photo">
+        <Image
+          src={office}
+          alt="Despacho privado de Republikken Maó, con mesa de madera, sillas y luz natural"
+          width={1100}
+          height={650}
+          widths={[480, 768, 1100, 1600]}
+          sizes="(max-width: 600px) 100vw, 65vw"
+          format="webp"
+          quality={82}
+          loading="eager"
+          fetchpriority="high"
+        />
+        <span class="photo-caption">Tu próximo día de trabajo podría empezar aquí.</span>
+      </div>
+      <aside class="hero-note">
+        <Cube />
+        <h2>
+          {homeCopy.noteTitle.map((line, index) => (
+            <>
+              {index > 0 && <br />}
+              {line}
+            </>
+          ))}
+        </h2>
+        <p>{homeCopy.noteBody}</p>
+        <a href="/como-funciona">
+          Sin contratos. Sin permanencia. <Icon name="diagonal" />
+        </a>
+      </aside>
+    </div>
+    <div class="hero-benefits">
+      <span>
+        <Icon name="check" />
+        Paga solo las horas que usas
+      </span>
+      <span>
+        <Icon name="sun" />
+        Todo incluido, sin complicaciones
+      </span>
+      <span>
+        <Icon name="clock" />
+        Lunes a sábado · 8–22 h
+      </span>
+      <span>
+        <Icon name="pin" />
+        En el centro de Maó
+      </span>
+    </div>
+  </section>
+  <section class="section wrap" id="tu-espacio">
+    <div class="section-heading">
+      <h2>{homeCopy.spacesHeading}</h2>
+      <p>
+        Cada proyecto necesita su espacio.
+        <br />
+        Encuentra el que encaja contigo.
+      </p>
+    </div>
+    <div class="intent-links">
+      <a href="/profesionales">
+        Necesito un despacho <Icon name="diagonal" />
+      </a>
+      <a href="/eventos-formaciones">
+        Organizo un evento o una formación <Icon name="diagonal" />
+      </a>
+      <a href="/entrenadores-fitness">
+        Doy clases o entreno <Icon name="diagonal" />
+      </a>
+    </div>
+    <SpaceCards />
+    <div class="spaces-note">
+      <p>Limpieza, suministros y climatización incluidos. Precios + IVA.</p>
+      <a class="text-link" href="/reuniones-empresas">
+        ¿Una reunión de equipo? También tienes sitio. <Icon />
+      </a>
+    </div>
+  </section>
+  <Steps />
+  <section class="community section wrap">
+    <div class="community-image">
+      <Image
+        src={common}
+        alt="Mesa de madera y plantas en las zonas comunes de Republikken Maó"
+        width={650}
+        height={700}
+        widths={[400, 650, 1000]}
+        sizes="(max-width: 600px) 90vw, 45vw"
+        format="webp"
+        quality={82}
+        loading="lazy"
+      />
+      <div class="community-badge">
+        <span class="status-dot"></span>
+        <span>
+          Despachos permanentes: <strong>completos</strong>
+        </span>
+      </div>
+    </div>
+    <div class="community-copy">
+      <h2>
+        {homeCopy.communityTitle.map((line, index) => (
+          <>
+            {index > 0 && <br />}
+            {line}
+          </>
+        ))}
+      </h2>
+      {homeCopy.communityBody.map((paragraph) => (
+        <p>{paragraph}</p>
+      ))}
+      <div class="values">
+        <div class="value-row">
+          <strong>Libertad</strong>
+          <span>Vienes cómo, cuándo y cuánto necesitas.</span>
+        </div>
+        <div class="value-row">
+          <strong>Igualdad</strong>
+          <span>Un autónomo o una gran empresa. El mismo trato.</span>
+        </div>
+        <div class="value-row">
+          <strong>Comunidad</strong>
+          <span>Personas que se conocen y se recomiendan.</span>
+        </div>
+      </div>
+    </div>
+  </section>
+  <Host />
+  <SocialProof />
+  <section class="location-section wrap">
+    <div>
+      <h2>
+        Republikken está en el centro de Maó.
+      </h2>
+      <p class="address">{site.address}</p>
+      <p>
+        También por {site.secondEntrance}.<br />
+        {site.postalCode} Maó, Menorca · {site.hours}
+      </p>
+      <a class="text-link" href="/contacto">
+        Ven a conocernos <Icon name="diagonal" />
+      </a>
+    </div>
+    <div class="location-map">
+      <iframe
+        title="Ubicación de Republikken en C/ Doctor Camps 35, Maó"
+        src={`https://maps.google.com/maps?q=${site.geo.latitude},${site.geo.longitude}&z=16&output=embed`}
+        loading="lazy"
+        referrerpolicy="no-referrer-when-downgrade"
+        allowfullscreen
+      ></iframe>
+      <a
+        class="button button-outline map-action"
+        href={site.maps}
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        Cómo llegar <Icon name="diagonal" />
+      </a>
+    </div>
+  </section>
+  <FAQ items={faqs} />
+  <CTA />
+</Layout>

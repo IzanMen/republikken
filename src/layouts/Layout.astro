@@ -1,0 +1,201 @@
+---
+import '../styles/global.css';
+import { withPrices } from '../data/copy';
+import { rates } from '../data/rates';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import { site, type FAQItem } from '../data/config';
+import poppinsFont from '@fontsource/poppins/files/poppins-latin-400-normal.woff2?url';
+import syncopateFont from '@fontsource/syncopate/files/syncopate-latin-700-normal.woff2?url';
+interface Props {
+  title: string;
+  description: string;
+  faqs?: FAQItem[];
+  noindex?: boolean;
+  breadcrumbs?: { name: string; url: string }[];
+  schema?: Record<string, unknown>[];
+}
+const {
+  title,
+  description: rawDescription,
+  faqs = [],
+  noindex = false,
+  breadcrumbs = [],
+  schema = [],
+} = Astro.props;
+const description = withPrices(rawDescription);
+const base = Astro.site!;
+const canonical = new URL(Astro.url.pathname, base).href;
+const og = new URL(
+  `/og/${Astro.url.pathname.replace(/^\/|\/$/g, '').replaceAll('/', '-') || 'inicio'}.png`,
+  base,
+).href;
+const root = new URL('/', base).href;
+const ld = [
+  {
+    '@type': 'Organization',
+    '@id': `${root}#organization`,
+    name: 'Republikken Maó',
+    url: root,
+    logo: new URL('/brand/logo.svg', base).href,
+    sameAs: [site.instagram],
+  },
+  {
+    '@type': 'LocalBusiness',
+    '@id': `${root}#business`,
+    name: 'Republikken Maó',
+    url: root,
+    image: new URL('/og/inicio.png', base).href,
+    telephone: site.phone,
+    email: site.email,
+    priceRange: `${Math.min(...Object.values(rates))} €–${Math.max(...Object.values(rates))} € / hora + IVA`,
+    address: {
+      '@type': 'PostalAddress',
+      streetAddress: site.address,
+      addressLocality: site.city,
+      postalCode: site.postalCode,
+      addressRegion: 'Illes Balears',
+      addressCountry: 'ES',
+    },
+    geo: { '@type': 'GeoCoordinates', ...site.geo },
+    openingHoursSpecification: [
+      {
+        '@type': 'OpeningHoursSpecification',
+        dayOfWeek: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'],
+        opens: '08:00',
+        closes: '22:00',
+      },
+    ],
+    sameAs: [site.instagram],
+  },
+  {
+    '@type': 'WebSite',
+    '@id': `${root}#website`,
+    url: root,
+    name: 'Republikken Maó',
+    inLanguage: 'es',
+    publisher: { '@id': `${root}#organization` },
+  },
+  ...(breadcrumbs.length
+    ? [
+        {
+          '@type': 'BreadcrumbList',
+          itemListElement: [{ name: 'Inicio', url: '/' }, ...breadcrumbs].map((b, i) => ({
+            '@type': 'ListItem',
+            position: i + 1,
+            name: b.name,
+            item: new URL(b.url, base).href,
+          })),
+        },
+      ]
+    : []),
+  ...(faqs.length
+    ? [
+        {
+          '@type': 'FAQPage',
+          mainEntity: faqs.map((f) => ({
+            '@type': 'Question',
+            name: f.question,
+            acceptedAnswer: { '@type': 'Answer', text: f.answer },
+          })),
+        },
+      ]
+    : []),
+  ...schema,
+];
+---
+
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#675F2E" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <link rel="canonical" href={canonical} />
+    {noindex && <meta name="robots" content="noindex,follow" />}
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="preload" href={poppinsFont} as="font" type="font/woff2" crossorigin />
+    <link rel="preload" href={syncopateFont} as="font" type="font/woff2" crossorigin />
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="Republikken Maó" />
+    <meta property="og:locale" content="es_ES" />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:image" content={og} />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content={title} />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={og} />
+    <script
+      type="application/ld+json"
+      set:html={JSON.stringify({ '@context': 'https://schema.org', '@graph': ld }).replaceAll(
+        '<',
+        '\u003c',
+      )}
+    />
+    <meta name="view-transition" content="same-origin" />
+  </head>
+  <body>
+    <a href="#contenido" class="skip-link">
+      Saltar al contenido
+    </a>
+    <Header />
+    <main id="contenido">
+      {breadcrumbs.length > 0 && (
+        <nav class="breadcrumbs wrap" aria-label="Ruta de navegación">
+          <a href="/">Inicio</a>
+          {breadcrumbs.map((b, i) => (
+            <>
+              <span aria-hidden="true">/</span>
+              {i === breadcrumbs.length - 1 ? (
+                <span aria-current="page">{b.name}</span>
+              ) : (
+                <a href={b.url}>{b.name}</a>
+              )}
+            </>
+          ))}
+        </nav>
+      )}
+      <slot />
+    </main>
+    <Footer />
+    <div
+      class="cookie-banner"
+      id="cookie-banner"
+      hidden
+      role="region"
+      aria-label="Preferencias de cookies"
+    >
+      <div>
+        <strong>Tú decides sobre tus datos.</strong>
+        <p>
+          Con tu permiso, usamos medición de uso para mejorar la web.{' '}
+          <a href="/cookies">Ver política de cookies</a>.
+        </p>
+      </div>
+      <div class="cookie-actions">
+        <button class="button button-outline" data-consent="denied">
+          Rechazar
+        </button>
+        <button class="button" data-consent="granted">
+          Aceptar
+        </button>
+      </div>
+      <p class="cookie-status" role="status" hidden></p>
+    </div>
+    <script
+      id="analytics-config"
+      type="application/json"
+      set:html={JSON.stringify(site.analytics).replaceAll('<', '\u003c')}
+    />
+    <script>
+      import '../scripts/site';
+    </script>
+  </body>
+</html>
