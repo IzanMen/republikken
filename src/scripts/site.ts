@@ -144,6 +144,23 @@ document.addEventListener('click', (event) => {
   // Let the curtain fully settle before replacing the document.
   setTimeout(() => location.assign(destination.href), 500);
 });
+
+// Browsers can restore the outgoing DOM from their back-forward cache.
+addEventListener('pageshow', (event) => {
+  if (
+    !(event as PageTransitionEvent).persisted &&
+    !document.body.classList.contains('page-leaving')
+  )
+    return;
+  document.body.classList.remove('page-leaving');
+  document.body.removeAttribute('aria-busy');
+  document.documentElement.classList.remove('page-entering');
+  try {
+    sessionStorage.removeItem('republikken-page-transition');
+  } catch {
+    /* The restored page is already usable without storage. */
+  }
+});
 const priceSection = document.querySelector('[data-track-prices]');
 if (priceSection && 'IntersectionObserver' in window) {
   const observer = new IntersectionObserver(

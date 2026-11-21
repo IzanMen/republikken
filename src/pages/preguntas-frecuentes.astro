@@ -2,8 +2,10 @@
 import Layout from '../layouts/Layout.astro';
 import FAQ from '../components/FAQ.astro';
 import CTA from '../components/CTA.astro';
+import EditorialHero from '../components/EditorialHero.astro';
 import { commonFAQ } from '../data/config';
 import { landings } from '../data/landings';
+import meeting from '../assets/images/sala-reuniones-republikken-mao.webp';
 const sections = [
   { title: 'Reservas y condiciones.', items: commonFAQ },
   { title: 'Tu despacho.', items: landings[0].faqs },
@@ -20,13 +22,17 @@ const faqs = sections.flatMap((s) => s.items);
   breadcrumbs={[{ name: 'Preguntas frecuentes', url: '/preguntas-frecuentes' }]}
 >
   <div class="wrap">
-    <div class="page-intro">
+    <EditorialHero
+      src={meeting}
+      alt="Sala de reuniones de Republikken Maó preparada para trabajar en equipo"
+      caption="Las dudas claras antes de reservar."
+    >
       <h1>Preguntas frecuentes sobre espacios y reservas.</h1>
       <p>
         Precios, espacios, actividades y reservas. Estas son las preguntas que conviene resolver
         antes de elegir tus horas.
       </p>
-    </div>
+    </EditorialHero>
   </div>
   {sections.map((s) => (
     <FAQ title={s.title} items={s.items} />

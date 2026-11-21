@@ -2,8 +2,10 @@
 import Layout from '../layouts/Layout.astro';
 import Cube from '../components/Cube.astro';
 import Icon from '../components/Icon.astro';
+import EditorialHero from '../components/EditorialHero.astro';
 import { rates } from '../data/rates';
 import { site, whatsapp } from '../data/config';
+import event from '../assets/images/evento-profesional-republikken-mao.webp';
 ---
 
 <Layout
@@ -12,13 +14,17 @@ import { site, whatsapp } from '../data/config';
   breadcrumbs={[{ name: 'Pedir presupuesto', url: '/presupuesto' }]}
 >
   <div class="wrap">
-    <div class="page-intro">
+    <EditorialHero
+      src={event}
+      alt="Evento profesional con público en la sala de Republikken Maó"
+      caption="Un espacio preparado alrededor de tu idea."
+    >
       <h1>Pide presupuesto para tu evento en Maó.</h1>
       <p>
         Unas preguntas para entender lo que necesitas. Fran revisará tu propuesta y hablará contigo
         para concretar disponibilidad, servicios y precio.
       </p>
-    </div>
+    </EditorialHero>
     <div class="form-layout">
       <form class="quote-form" id="quote-form" data-endpoint={site.formEndpoint} novalidate>
         <fieldset>

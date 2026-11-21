@@ -3,6 +3,8 @@ import { getCollection } from 'astro:content';
 import Layout from '../../layouts/Layout.astro';
 import Icon from '../../components/Icon.astro';
 import CTA from '../../components/CTA.astro';
+import EditorialHero from '../../components/EditorialHero.astro';
+import training from '../../assets/images/evento-formacion-republikken-mao.webp';
 const guides = await getCollection('guias');
 ---
 
@@ -12,18 +14,24 @@ const guides = await getCollection('guias');
   breadcrumbs={[{ name: 'Ideas y guías', url: '/guias' }]}
 >
   <div class="wrap">
-    <div class="page-intro">
+    <EditorialHero
+      src={training}
+      alt="Formación con público en la sala de eventos de Republikken Maó"
+      caption="Ideas que empiezan encontrando el espacio adecuado."
+    >
       <h1>Guías para alquilar despachos y salas en Maó.</h1>
       <p>
         Unas ideas prácticas para elegir dónde trabajar, preparar un encuentro o dar forma a tu
         próximo proyecto.
       </p>
-    </div>
+    </EditorialHero>
     <div class="guide-grid">
       {guides.map((g) => (
         <a href={`/guias/${g.id}`} class="guide-card">
           <h2>{g.data.title}</h2>
-          <p>{g.data.category} · {g.data.readingTime}</p>
+          <p>
+            {g.data.category} · {g.data.readingTime}
+          </p>
           <span class="text-link">
             Leer la guía <Icon />
           </span>

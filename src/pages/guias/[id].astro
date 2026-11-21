@@ -2,12 +2,31 @@
 import { getCollection, render } from 'astro:content';
 import Layout from '../../layouts/Layout.astro';
 import CTA from '../../components/CTA.astro';
+import EditorialHero from '../../components/EditorialHero.astro';
+import office from '../../assets/images/despacho-privado-mao.jpg';
+import meeting from '../../assets/images/sala-reuniones-republikken-mao.webp';
+import event from '../../assets/images/evento-profesional-republikken-mao.webp';
 export async function getStaticPaths() {
   const guides = await getCollection('guias');
   return guides.map((guide) => ({ params: { id: guide.id }, props: { guide } }));
 }
 const { guide } = Astro.props;
 const { Content } = await render(guide);
+const guideMedia = {
+  'despacho-por-horas-o-local': {
+    src: office,
+    alt: 'Despacho privado por horas de Republikken en Maó',
+  },
+  'junta-propietarios-mao': {
+    src: meeting,
+    alt: 'Sala de reuniones preparada para una junta en Republikken Maó',
+  },
+  'presentacion-producto-mao': {
+    src: event,
+    alt: 'Presentación profesional ante público en Republikken Maó',
+  },
+};
+const media = guideMedia[guide.id as keyof typeof guideMedia];
 const schema = [
   {
     '@type': 'Article',
@@ -32,12 +51,14 @@ const schema = [
   ]}
 >
   <article class="wrap">
-    <header class="page-intro">
+    <EditorialHero src={media.src} alt={media.alt} caption={`${guide.data.readingTime} de lectura`}>
       <h1 style="font-family:var(--font);font-weight:400;letter-spacing:-1.5px">
         {guide.data.title}
       </h1>
-      <p>{guide.data.category} · {guide.data.readingTime}</p>
-    </header>
+      <p>
+        {guide.data.category} · {guide.data.readingTime}
+      </p>
+    </EditorialHero>
     <div class="prose">
       <Content />
     </div>

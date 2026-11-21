@@ -2,7 +2,9 @@
 import Layout from '../layouts/Layout.astro';
 import Icon from '../components/Icon.astro';
 import CTA from '../components/CTA.astro';
+import EditorialHero from '../components/EditorialHero.astro';
 import { site, whatsapp } from '../data/config';
+import entrance from '../assets/images/entrada-republikken-mao.jpg';
 ---
 
 <Layout
@@ -11,13 +13,17 @@ import { site, whatsapp } from '../data/config';
   breadcrumbs={[{ name: 'Contacto', url: '/contacto' }]}
 >
   <div class="wrap">
-    <div class="page-intro">
+    <EditorialHero
+      src={entrance}
+      alt="Entrada de Republikken en el centro de Maó"
+      caption="Nos vemos en el centro de Maó."
+    >
       <h1>Contacta con Republikken en Maó.</h1>
       <p>
         Para una primera visita, una reserva o una idea que todavía está tomando forma. Tienes línea
         directa con el propietario.
       </p>
-    </div>
+    </EditorialHero>
     <div class="contact-grid">
       <div class="contact-data">
         <div>

@@ -1,7 +1,9 @@
 ---
 import Layout from '../layouts/Layout.astro';
 import Icon from '../components/Icon.astro';
+import EditorialHero from '../components/EditorialHero.astro';
 import { spaces, site, priceLabel, whatsapp } from '../data/config';
+import office from '../assets/images/despacho-privado-mao.jpg';
 const first = spaces[0];
 ---
 
@@ -11,13 +13,17 @@ const first = spaces[0];
   breadcrumbs={[{ name: 'Reservar', url: '/reservar' }]}
 >
   <div class="wrap">
-    <div class="page-intro">
+    <EditorialHero
+      src={office}
+      alt="Despacho privado de Republikken Maó listo para reservar"
+      caption="Tu espacio, cuando lo necesitas."
+    >
       <h1>Reserva un despacho o sala por horas en Maó.</h1>
       <p>
         Elige dónde quieres estar. Después podrás consultar la disponibilidad y completar tu reserva
         en Cobot, nuestra plataforma de reservas.
       </p>
-    </div>
+    </EditorialHero>
     <div class="booking-layout" data-booking>
       <fieldset class="booking-options">
         <legend>¿Qué espacio necesitas?</legend>

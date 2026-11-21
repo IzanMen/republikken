@@ -3,7 +3,9 @@ import Layout from '../layouts/Layout.astro';
 import CTA from '../components/CTA.astro';
 import FAQ from '../components/FAQ.astro';
 import Icon from '../components/Icon.astro';
+import EditorialHero from '../components/EditorialHero.astro';
 import { commonFAQ } from '../data/config';
+import stairs from '../assets/images/escalera-republikken-mao.jpg';
 const faqs = [commonFAQ[0], commonFAQ[2], commonFAQ[3], commonFAQ[4]];
 const steps = [
   {
@@ -40,13 +42,17 @@ const steps = [
   breadcrumbs={[{ name: 'Cómo funciona', url: '/como-funciona' }]}
 >
   <section class="wrap">
-    <div class="page-intro">
+    <EditorialHero
+      src={stairs}
+      alt="Escalera interior y arquitectura de Republikken Maó"
+      caption="Llegar, entrar y centrarte en lo tuyo."
+    >
       <h1>Cómo reservar un espacio por horas en Republikken.</h1>
       <p>
         Sin alquilar un local. Sin permanencia. Elige el tiempo que necesitas y dedica tu energía a
         lo que vienes a hacer.
       </p>
-    </div>
+    </EditorialHero>
     <div class="process-list">
       {steps.map((step, i) => (
         <article class="process-row">

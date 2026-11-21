@@ -3,7 +3,9 @@ import Layout from '../layouts/Layout.astro';
 import Icon from '../components/Icon.astro';
 import FAQ from '../components/FAQ.astro';
 import CTA from '../components/CTA.astro';
+import EditorialHero from '../components/EditorialHero.astro';
 import { spaces, reserveUrl, commonFAQ, whatsapp } from '../data/config';
+import common from '../assets/images/zonas-comunes-republikken.jpg';
 const faqs = commonFAQ.slice(0, 3);
 ---
 
@@ -14,13 +16,17 @@ const faqs = commonFAQ.slice(0, 3);
   breadcrumbs={[{ name: 'Tarifas', url: '/tarifas' }]}
 >
   <div class="wrap">
-    <div class="page-intro">
+    <EditorialHero
+      src={common}
+      alt="Zonas comunes de Republikken Maó con mesa de madera y plantas"
+      caption="Todo lo esencial, incluido."
+    >
       <h1>Precios de despachos y salas por horas en Maó.</h1>
       <p>
         Tres espacios, una misma manera de hacer las cosas. Alquiler por horas, sin permanencia y
         con los servicios esenciales incluidos.
       </p>
-    </div>
+    </EditorialHero>
     <div class="pricing-grid" data-track-prices>
       {spaces
         .filter((s) => s.site === 'mao')
