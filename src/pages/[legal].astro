@@ -18,24 +18,12 @@ const { page } = Astro.props;
     <div class="page-intro">
       <h1>{page.title}</h1>
     </div>
-    <div class="prose">
-      {!site.legalVerified && (
-        <aside class="legal-notice">
-          <strong>Borrador pendiente de revisión.</strong> La identificación del titular y los
-          términos definitivos deben completarse antes de la publicación comercial.
-        </aside>
-      )}
-      {page.sections.map((section) => (
-        <section>
-          <h2>{section.title}</h2>
-          <p>{section.text}</p>
-        </section>
-      ))}
-      {page.slug === 'cookies' && (
+    {page.slug === 'cookies' && (
+      <div class="prose">
         <button class="button" data-cookie-settings>
           Configurar cookies
         </button>
-      )}
-    </div>
+      </div>
+    )}
   </article>
 </Layout>
