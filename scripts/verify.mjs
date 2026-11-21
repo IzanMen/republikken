@@ -16,6 +16,16 @@ const errors = [];
 const results = [];
 const titles = new Set(),
   descriptions = new Set();
+const sourceFiles = (await walk(path.resolve('src'))).filter((file) =>
+  /\.(?:astro|css)$/.test(file),
+);
+for (const file of sourceFiles) {
+  const source = await readFile(file, 'utf8');
+  for (const match of source.matchAll(/font-size\s*:\s*(\d+(?:\.\d+)?)px/gi)) {
+    if (Number(match[1]) < 14)
+      errors.push(`${path.relative(path.resolve(), file)}: font size below 14px (${match[1]}px)`);
+  }
+}
 for (const file of pages) {
   const html = await readFile(file, 'utf8'),
     doc = new JSDOM(html).window.document;
