@@ -108,6 +108,42 @@ document.addEventListener('click', (event) => {
   const target = (event.target as Element).closest<HTMLElement>('[data-track]');
   if (target) track(target.dataset.track!, { space: target.dataset.space || 'general' });
 });
+
+// Branded cross-page transition with a normal navigation fallback.
+document.addEventListener('click', (event) => {
+  if (
+    event.defaultPrevented ||
+    event.button !== 0 ||
+    event.metaKey ||
+    event.ctrlKey ||
+    event.shiftKey ||
+    event.altKey ||
+    matchMedia('(prefers-reduced-motion: reduce)').matches
+  )
+    return;
+
+  const link = (event.target as Element).closest<HTMLAnchorElement>('a[href]');
+  if (!link || link.target || link.hasAttribute('download')) return;
+
+  const destination = new URL(link.href, location.href);
+  const sameDocumentHash =
+    destination.pathname === location.pathname &&
+    destination.search === location.search &&
+    destination.hash;
+  if (destination.origin !== location.origin || sameDocumentHash) return;
+
+  event.preventDefault();
+  if (document.body.classList.contains('page-leaving')) return;
+  document.body.classList.add('page-leaving');
+  document.body.setAttribute('aria-busy', 'true');
+  try {
+    sessionStorage.setItem('republikken-page-transition', 'enter');
+  } catch {
+    /* Continue with the navigation. */
+  }
+  // Let the curtain fully settle before replacing the document.
+  setTimeout(() => location.assign(destination.href), 500);
+});
 const priceSection = document.querySelector('[data-track-prices]');
 if (priceSection && 'IntersectionObserver' in window) {
   const observer = new IntersectionObserver(
@@ -145,6 +181,94 @@ menu?.querySelectorAll('a').forEach((a) => a.addEventListener('click', closeMenu
 matchMedia('(min-width: 851px)').addEventListener('change', (e) => {
   if (e.matches) closeMenu();
 });
+
+// Motion system: progressive, lightweight and fully disabled for reduced-motion users.
+const reduceMotion = matchMedia('(prefers-reduced-motion: reduce)').matches;
+const header = document.querySelector<HTMLElement>('.site-header');
+const updateHeader = () => header?.classList.toggle('is-scrolled', scrollY > 24);
+updateHeader();
+addEventListener('scroll', updateHeader, { passive: true });
+
+if (!reduceMotion) {
+  const revealGroups = [
+    '.section-heading > *',
+    '.intent-links > *',
+    '.space-cards > *',
+    '.steps > *',
+    '.community > *',
+    '.values > *',
+    '.host-section > *',
+    '.social-proof figure',
+    '.location-section > *',
+    '.faq-section > *',
+    '.closing-inner > *',
+    '.footer-top > *',
+    '.landing-hero > *',
+    '.equipment-list > *',
+    '.use-grid > *',
+    '.pricing-grid > *',
+    '.process-row',
+    '.space-detail',
+    '.guide-grid > *',
+    '.contact-grid > *',
+    '.booking-layout > *',
+    '.form-layout > *',
+    '.page-intro > *',
+  ];
+  const revealItems = [...document.querySelectorAll<HTMLElement>(revealGroups.join(','))];
+  revealItems.forEach((item) => {
+    const siblings = item.parentElement
+      ? [...item.parentElement.children].filter((child) =>
+          revealItems.includes(child as HTMLElement),
+        )
+      : [];
+    const index = Math.max(0, siblings.indexOf(item));
+    item.classList.add('motion-reveal');
+    item.style.setProperty('--reveal-delay', `${Math.min(index, 4) * 70}ms`);
+  });
+
+  if ('IntersectionObserver' in window) {
+    const revealObserver = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (!entry.isIntersecting) return;
+          entry.target.classList.add('is-visible');
+          revealObserver.unobserve(entry.target);
+        });
+      },
+      { rootMargin: '0px 0px -8% 0px', threshold: 0.08 },
+    );
+    revealItems.forEach((item) => revealObserver.observe(item));
+    document.documentElement.classList.add('motion-observing');
+  } else {
+    revealItems.forEach((item) => item.classList.add('is-visible'));
+  }
+
+  const heroImage = document.querySelector<HTMLElement>('.hero-photo > img');
+  if (heroImage) {
+    let frame = 0;
+    const updateHeroDepth = () => {
+      cancelAnimationFrame(frame);
+      frame = requestAnimationFrame(() => {
+        const rect = heroImage.getBoundingClientRect();
+        const progress = Math.max(-1, Math.min(1, rect.top / innerHeight));
+        heroImage.style.setProperty('--hero-shift', `${progress * -12}px`);
+      });
+    };
+    updateHeroDepth();
+    addEventListener('scroll', updateHeroDepth, { passive: true });
+  }
+
+  if (matchMedia('(hover: hover) and (pointer: fine)').matches) {
+    document.querySelectorAll<HTMLElement>('.space-card').forEach((card) => {
+      card.addEventListener('pointermove', (event) => {
+        const rect = card.getBoundingClientRect();
+        card.style.setProperty('--pointer-x', `${event.clientX - rect.left}px`);
+        card.style.setProperty('--pointer-y', `${event.clientY - rect.top}px`);
+      });
+    });
+  }
+}
 const calculator = document.querySelector<HTMLElement>('[data-calculator]');
 if (calculator) {
   const hours = calculator.querySelector<HTMLInputElement>('[name="hours"]')!;

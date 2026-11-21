@@ -111,6 +111,16 @@ const ld = [
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="theme-color" content="#675F2E" />
+    <script is:inline>
+      try {
+        if (sessionStorage.getItem('republikken-page-transition') === 'enter') {
+          sessionStorage.removeItem('republikken-page-transition');
+          document.documentElement.classList.add('page-entering');
+        }
+      } catch {
+        // Navigation still works when session storage is unavailable.
+      }
+    </script>
     <title>{title}</title>
     <meta name="description" content={description} />
     <link rel="canonical" href={canonical} />
