@@ -24,18 +24,18 @@ Astro 7 puede dejar la vista previa en segundo plano. Usa `npx astro preview sta
 
 ## Editar el contenido
 
-| Qué modificar | Archivo |
-| --- | --- |
-| Precios base por hora, sin IVA | `src/data/rates.ts` |
-| Teléfono, dirección, horario, Cobot, analítica, sello, banderas | `src/data/config.ts` |
-| Descripción y equipamiento de espacios | `src/data/config.ts`, `allSpaces` |
-| Copy principal de home | `src/data/copy.ts`, `homeCopy` |
-| Títulos, SEO, casos de uso y FAQ por público | `src/data/landings.ts` |
-| Preguntas frecuentes generales | `src/data/config.ts`, `commonFAQ` |
-| Artículos y metadatos | `src/content/guias/*.md` |
-| Textos legales en borrador | `src/data/legal.ts` |
-| Contenido auxiliar de páginas y bloques | `src/pages/*.astro`, `src/components/*.astro` |
-| Colores, tipografía, medidas, movimiento, responsive | `src/styles/global.css` |
+| Qué modificar                                                   | Archivo                                       |
+| --------------------------------------------------------------- | --------------------------------------------- |
+| Precios base por hora, sin IVA                                  | `src/data/rates.ts`                           |
+| Teléfono, dirección, horario, Cobot, analítica, sello, banderas | `src/data/config.ts`                          |
+| Descripción y equipamiento de espacios                          | `src/data/config.ts`, `allSpaces`             |
+| Copy principal de home                                          | `src/data/copy.ts`, `homeCopy`                |
+| Títulos, SEO, casos de uso y FAQ por público                    | `src/data/landings.ts`                        |
+| Preguntas frecuentes generales                                  | `src/data/config.ts`, `commonFAQ`             |
+| Artículos y metadatos                                           | `src/content/guias/*.md`                      |
+| Textos legales en borrador                                      | `src/data/legal.ts`                           |
+| Contenido auxiliar de páginas y bloques                         | `src/pages/*.astro`, `src/components/*.astro` |
+| Colores, tipografía, medidas, movimiento, responsive            | `src/styles/global.css`                       |
 
 Un precio se modifica **una sola vez** en `rates.ts`. Las fichas, reserva, tarifas, calculadoras, ofertas estructuradas, FAQ y metadescripciones se actualizan a partir de esos valores. Dentro de los archivos de datos se pueden usar tokens `{{precio_despacho}}`, `{{precio_eventos}}` y `{{precio_fitness}}`. `withPrices()` los resuelve al generar la web. El cálculo es orientativo, sin IVA, descuentos ni servicios adicionales; no afirma precios de competidores.
 
@@ -83,23 +83,16 @@ El proveedor debe validar también los campos en servidor, limitar frecuencia, g
 
 ## Analítica y cookies
 
-Desactivadas por defecto. Para activar **una** opción:
+La integración prevista es **Umami Analytics**. Antes de publicar, crea la propiedad e incorpora sus datos al entorno de producción:
 
 ```dotenv
-PUBLIC_ANALYTICS_PROVIDER=ga4
-PUBLIC_ANALYTICS_ID=G-XXXXXXXXXX
+PUBLIC_UMAMI_WEBSITE_ID=00000000-0000-4000-8000-000000000000
+PUBLIC_UMAMI_SCRIPT_URL=https://cloud.umami.is/script.js
 ```
 
-O:
+La etiqueta solo carga después de Aceptar. Rechazar tiene igual peso visual. La preferencia se guarda bajo `republikken-consent-v1` y se puede cambiar desde el footer. Si se revoca después de cargar Umami o Google Maps, la página se recarga para retirar ese contenido externo.
 
-```dotenv
-PUBLIC_ANALYTICS_PROVIDER=plausible
-PUBLIC_ANALYTICS_DOMAIN=www.republikkenmao.com
-```
-
-La etiqueta solo carga después de Aceptar. Rechazar tiene igual peso visual. La preferencia se guarda bajo `republikken-consent-v1`. Se puede cambiar desde el footer; al revocar una medición ya cargada se deshabilita, se eliminan las cookies de GA accesibles en el dominio y se recarga la página. Sin analítica configurada no aparece un banner automático; Configurar cookies sigue disponible.
-
-Eventos: `reserve_click` (espacio), `whatsapp_click`, `phone_click`, `quote_prepared` (WhatsApp, sin afirmar envío), `quote_submit` (respuesta del proveedor confirmada), `view_prices` y `calculator_use`. Nunca se adjuntan nombre, correo, teléfono ni texto del formulario a los eventos. Configura los eventos personalizados de Plausible/GA4 y revisa las políticas e inventario antes de activarlos. El mapa Google se carga solo al pulsar Cargar mapa y se explica en contacto y cookies.
+Eventos: `reserve_click` (espacio), `whatsapp_click`, `phone_click`, `quote_prepared` (WhatsApp, sin afirmar envío), `quote_submit` (respuesta del proveedor confirmada), `view_prices` y `calculator_use`. Nunca se adjuntan nombre, correo, teléfono ni texto del formulario a los eventos. El mapa de Google se carga automáticamente al aceptar las cookies opcionales; si se rechazan, aparece un aviso en su lugar.
 
 ## Fotos, marca y sello de Cámara
 

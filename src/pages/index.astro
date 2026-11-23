@@ -6,6 +6,7 @@ import Icon from '../components/Icon.astro';
 import SpaceCards from '../components/SpaceCards.astro';
 import Steps from '../components/Steps.astro';
 import Host from '../components/Host.astro';
+import MapEmbed from '../components/MapEmbed.astro';
 import CTA from '../components/CTA.astro';
 import FAQ from '../components/FAQ.astro';
 import office from '../assets/images/despacho-privado-mao.jpg';
@@ -25,8 +26,7 @@ const faqs = commonFAQ.slice(0, 3);
       </span>
     </div>
     <h1 class="hero-heading">
-      {homeCopy.headline}{' '}
-      <br />
+      {homeCopy.headline} <br />
       <span class="line-two">
         <span class="accent">{homeCopy.accent}</span>
         <Cube class="hero-cube" />
@@ -175,9 +175,7 @@ const faqs = commonFAQ.slice(0, 3);
   <SocialProof />
   <section class="location-section wrap">
     <div>
-      <h2>
-        Republikken está en el centro de Maó.
-      </h2>
+      <h2>Republikken está en el centro de Maó.</h2>
       <p class="address">{site.address}</p>
       <p>
         También por {site.secondEntrance}.<br />
@@ -188,13 +186,11 @@ const faqs = commonFAQ.slice(0, 3);
       </a>
     </div>
     <div class="location-map">
-      <iframe
+      <MapEmbed
         title="Ubicación de Republikken en C/ Doctor Camps 35, Maó"
-        src={`https://maps.google.com/maps?q=${site.geo.latitude},${site.geo.longitude}&z=16&output=embed`}
-        loading="lazy"
-        referrerpolicy="no-referrer-when-downgrade"
-        allowfullscreen
-      ></iframe>
+        latitude={site.geo.latitude}
+        longitude={site.geo.longitude}
+      />
       <a
         class="button button-outline map-action"
         href={site.maps}

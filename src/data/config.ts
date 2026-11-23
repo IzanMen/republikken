@@ -26,9 +26,9 @@ export const site = {
   },
   formEndpoint: import.meta.env.PUBLIC_FORM_ENDPOINT || '',
   analytics: {
-    provider: (import.meta.env.PUBLIC_ANALYTICS_PROVIDER || '') as '' | 'plausible' | 'ga4',
-    id: import.meta.env.PUBLIC_ANALYTICS_ID || '',
-    domain: import.meta.env.PUBLIC_ANALYTICS_DOMAIN || '',
+    provider: 'umami' as const,
+    websiteId: import.meta.env.PUBLIC_UMAMI_WEBSITE_ID || '',
+    scriptUrl: import.meta.env.PUBLIC_UMAMI_SCRIPT_URL || 'https://cloud.umami.is/script.js',
   },
   // Activar únicamente con titularidad y textos revisados.
   legalVerified: false,

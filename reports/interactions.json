@@ -1,5 +1,5 @@
 {
-  "checkedAt": "2026-11-20T16:31:03.976Z",
+  "checkedAt": "2026-11-23T16:18:22.147Z",
   "scope": "Isolated JSDOM integration checks with mocked network; no real message, booking, payment or external form submission.",
   "results": [
     {
@@ -47,15 +47,15 @@
       "pass": true
     },
     {
-      "name": "Home and contact include Google Maps without interaction",
+      "name": "Home and contact load Google Maps only after cookie consent",
       "pass": true
     },
     {
-      "name": "No analytics configuration means no tracker or unsolicited banner",
+      "name": "Cookie banner also controls maps before Umami receives its identifier",
       "pass": true
     },
     {
-      "name": "Configured analytics waits for consent; reject loads nothing",
+      "name": "Configured Umami waits for consent; reject loads nothing",
       "pass": true
     }
   ]

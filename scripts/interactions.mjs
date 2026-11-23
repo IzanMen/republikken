@@ -87,6 +87,10 @@ await test('Calculator updates cost, saving and rejects invalid hours', async ()
 });
 await test('Booking respects deep link and updates outgoing resource and WhatsApp', async () => {
   const t = await create('/reservar', '?espacio=fitness');
+  const marketing = t.doc.querySelector('#booking-marketing');
+  assert(marketing);
+  assert.equal(marketing.checked, false);
+  assert.equal(marketing.required, false);
   assert.match(t.doc.querySelector('[data-booking-name]').textContent, /fitness/);
   assert.match(t.doc.querySelector('[data-booking-price]').textContent, /15/);
   assert.match(
@@ -94,6 +98,11 @@ await test('Booking respects deep link and updates outgoing resource and WhatsAp
     /yoga y fitness/,
   );
   assert.equal(t.doc.querySelector('[data-booking-link]').dataset.space, 'fitness');
+  marketing.click();
+  assert.match(
+    decodeURIComponent(t.doc.querySelector('[data-booking-whatsapp]').href),
+    /Quiero recibir novedades y promociones/,
+  );
   t.click('input[value=eventos]');
   assert.equal(t.doc.querySelector('[data-booking-name]').textContent, 'Sala de eventos');
   assert.match(t.doc.querySelector('[data-booking-hint]').textContent, /calendario general/);
@@ -107,6 +116,10 @@ await test('Unknown booking space safely falls back to the private office', asyn
 });
 await test('Quote requires core fields and privacy without making a request', async () => {
   const t = await create('/presupuesto');
+  const marketing = t.doc.querySelector('#marketing');
+  assert(marketing);
+  assert.equal(marketing.checked, false);
+  assert.equal(marketing.required, false);
   await t.submit();
   assert(t.doc.querySelectorAll('[aria-invalid=true]').length >= 5);
   assert.equal(t.calls.length, 0);
@@ -150,6 +163,7 @@ await test('Quote rejects invalid email, past dates and Sunday', async () => {
 await test('WhatsApp fallback prepares an encoded message, never pretends to send', async () => {
   const t = await create('/presupuesto');
   validForm(t);
+  t.click('#marketing');
   t.fill('#details', 'Prueba local <script>alert(1)</script>');
   await t.submit();
   const status = t.doc.querySelector('#form-status');
@@ -158,6 +172,7 @@ await test('WhatsApp fallback prepares an encoded message, never pretends to sen
   const a = status.querySelector('a');
   assert.match(a.href, /^https:\/\/wa.me\/34652505948\?text=/);
   assert.match(decodeURIComponent(a.href), /prueba@example.com/);
+  assert.match(decodeURIComponent(a.href), /doy mi consentimiento/);
   assert.equal(status.querySelector('script'), null);
   assert.equal(t.calls.length, 0);
   t.dom.window.close();
@@ -199,32 +214,38 @@ await test('Form HTTP failure preserves entered data and shows recovery', async 
   assert.equal(t.doc.querySelector('button[type=submit]').disabled, false);
   t.dom.window.close();
 });
-await test('Home and contact include Google Maps without interaction', async () => {
+await test('Home and contact load Google Maps only after cookie consent', async () => {
   for (const route of ['/', '/contacto']) {
     const t = await create(route);
+    assert.equal(t.doc.querySelectorAll('iframe').length, 0);
+    assert.match(t.doc.querySelector('.map-consent').textContent, /Acepta las cookies/);
+    t.click('[data-consent=denied]');
+    assert.equal(t.doc.querySelectorAll('iframe').length, 0);
+    t.click('[data-cookie-settings]');
+    t.click('[data-consent=granted]');
     assert.equal(t.doc.querySelectorAll('iframe').length, 1);
     assert.match(t.doc.querySelector('iframe').title, /Republikken/);
     assert.match(t.doc.querySelector('iframe').src, /^https:\/\/maps\.google\.com\/maps\?/);
     t.dom.window.close();
   }
 });
-await test('No analytics configuration means no tracker or unsolicited banner', async () => {
+await test('Cookie banner also controls maps before Umami receives its identifier', async () => {
   const t = await create();
-  assert.equal(t.doc.querySelector('#cookie-banner').hidden, true);
+  assert.equal(t.doc.querySelector('#cookie-banner').hidden, false);
   assert.equal(t.doc.querySelectorAll('script[src^="https://"]').length, 0);
-  t.click('[data-cookie-settings]');
-  assert.match(t.doc.querySelector('.cookie-status').textContent, /no hay analítica activa/);
+  t.click('[data-consent=denied]');
+  assert.equal(t.doc.querySelectorAll('iframe').length, 0);
   t.dom.window.close();
 });
-await test('Configured analytics waits for consent; reject loads nothing', async () => {
+await test('Configured Umami waits for consent; reject loads nothing', async () => {
   const t = await create(
     '/',
     '',
     (w) =>
       (w.document.querySelector('#analytics-config').textContent = JSON.stringify({
-        provider: 'ga4',
-        id: 'G-TEST123',
-        domain: '',
+        provider: 'umami',
+        websiteId: '94db1cb1-74f4-4a40-ad6c-962362670409',
+        scriptUrl: 'https://cloud.umami.is/script.js',
       })),
   );
   assert.equal(t.doc.querySelector('#cookie-banner').hidden, false);
@@ -233,11 +254,13 @@ await test('Configured analytics waits for consent; reject loads nothing', async
   assert.equal(t.doc.querySelectorAll('script[src^="https://"]').length, 0);
   t.click('[data-cookie-settings]');
   t.click('[data-consent=granted]');
-  assert.equal(t.doc.querySelectorAll('script[src^="https://www.googletagmanager.com"]').length, 1);
+  const tracker = t.doc.querySelector('script[src="https://cloud.umami.is/script.js"]');
+  assert(tracker);
+  assert.equal(tracker.dataset.websiteId, '94db1cb1-74f4-4a40-ad6c-962362670409');
   assert.equal(t.w.localStorage.getItem('republikken-consent-v1'), 'granted');
   t.click('[data-cookie-settings]');
   t.click('[data-consent=granted]');
-  assert.equal(t.doc.querySelectorAll('script[src^="https://www.googletagmanager.com"]').length, 1);
+  assert.equal(t.doc.querySelectorAll('script[src="https://cloud.umami.is/script.js"]').length, 1);
   t.dom.window.close();
 });
 await writeFile(

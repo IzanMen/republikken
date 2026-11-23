@@ -4,6 +4,7 @@ import Icon from '../components/Icon.astro';
 import CTA from '../components/CTA.astro';
 import EditorialHero from '../components/EditorialHero.astro';
 import { site, whatsapp } from '../data/config';
+import MapEmbed from '../components/MapEmbed.astro';
 import entrance from '../assets/images/entrada-republikken-mao.jpg';
 ---
 
@@ -69,13 +70,11 @@ import entrance from '../assets/images/entrada-republikken-mao.jpg';
         </div>
       </div>
       <div class="contact-map">
-        <iframe
+        <MapEmbed
           title="Ubicación de Republikken en C/ Doctor Camps 35, Maó"
-          src={`https://maps.google.com/maps?q=${site.geo.latitude},${site.geo.longitude}&z=16&output=embed`}
-          loading="lazy"
-          referrerpolicy="no-referrer-when-downgrade"
-          allowfullscreen
-        ></iframe>
+          latitude={site.geo.latitude}
+          longitude={site.geo.longitude}
+        />
       </div>
     </div>
     <div class="related-band" style="margin-bottom:70px">

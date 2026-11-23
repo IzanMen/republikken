@@ -1,0 +1,27 @@
+---
+interface Props {
+  latitude: number;
+  longitude: number;
+  title: string;
+}
+
+const { latitude, longitude, title } = Astro.props;
+const src = `https://maps.google.com/maps?q=${latitude},${longitude}&z=16&output=embed`;
+---
+
+<div class="map-embed" data-map-embed data-map-src={src} data-map-title={title}>
+  <div class="map-consent">
+    <p>
+      Acepta las cookies opcionales para visualizar el mapa de Google. Puedes cambiar tu elección en
+      cualquier momento.
+    </p>
+    <button class="button button-outline" type="button" data-cookie-settings>
+      Configurar cookies
+    </button>
+  </div>
+  <noscript>
+    <p>
+      Activa JavaScript y acepta las cookies opcionales para ver el mapa, o utiliza «Cómo llegar».
+    </p>
+  </noscript>
+</div>

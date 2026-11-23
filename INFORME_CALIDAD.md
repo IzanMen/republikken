@@ -80,9 +80,9 @@ Las 14 pruebas de `scripts/interactions.mjs` ejecutan el código real del client
 9. Honeypot que impide la petición saliente.
 10. Éxito de formulario únicamente después de respuesta HTTP correcta.
 11. Fallo HTTP: recuperación y conservación de los datos en el formulario.
-12. Mapa ausente hasta la interacción.
-13. Sin analítica configurada: ningún tracker ni banner automático.
-14. Analítica configurada: rechazo sin carga y aceptación sin duplicar el script.
+12. Google Maps ausente hasta aceptar las cookies opcionales y bloqueado al rechazarlas.
+13. Banner y bloqueo de mapas operativos aunque Umami todavía no tenga identificador.
+14. Umami configurado: rechazo sin carga y aceptación sin duplicar el script.
 
 Resultado: [interactions.json](reports/interactions.json). No se han enviado mensajes a Fran, creado reservas, realizado pagos ni transmitido formularios reales.
 

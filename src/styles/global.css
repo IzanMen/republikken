@@ -904,6 +904,28 @@ hr {
   height: 320px;
   border: 0;
 }
+.map-embed,
+.map-consent {
+  width: 100%;
+  height: 100%;
+}
+.map-consent {
+  min-height: 320px;
+  padding: 35px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+  gap: 20px;
+  background: var(--cream);
+  border: 1px solid var(--line);
+}
+.map-consent p {
+  max-width: 48ch;
+  margin: 0;
+  color: var(--muted);
+  font-size: 14px;
+}
 .location-map .map-action {
   background: white;
   box-shadow: var(--shadow);
@@ -1544,6 +1566,11 @@ input[type='range'] {
 .privacy-check a {
   text-decoration: underline;
 }
+.marketing-check {
+  margin-top: 0;
+  padding-top: 20px;
+  border-top: 1px solid var(--line);
+}
 .form-note {
   font-size: 14px;
   color: var(--muted);
@@ -1721,6 +1748,21 @@ input[type='range'] {
   border-color: #8e8550;
   margin: 28px 0;
 }
+.booking-marketing {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  margin: 0 0 24px;
+  padding-bottom: 24px;
+  border-bottom: 1px solid #8e8550;
+  color: #fff;
+  font-size: 14px;
+  line-height: 1.65;
+}
+.booking-marketing input {
+  margin-top: 3px;
+  accent-color: var(--cream);
+}
 .contact-grid {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -1754,6 +1796,9 @@ input[type='range'] {
   width: 100%;
   height: 360px;
   border: 0;
+}
+.contact-map .map-consent {
+  min-height: 360px;
 }
 .contact-map .location-graphic {
   height: 360px;

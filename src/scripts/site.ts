@@ -1,8 +1,10 @@
-type AnalyticsConfig = { provider: '' | 'plausible' | 'ga4'; id: string; domain: string };
+type AnalyticsConfig = {
+  provider: 'umami';
+  websiteId: string;
+  scriptUrl: string;
+};
 type AnalyticsWindow = Window & {
-  dataLayer?: unknown[];
-  gtag?: (...args: unknown[]) => void;
-  plausible?: ((event: string, options?: unknown) => void) & { q?: unknown[] };
+  umami?: { track: (event: string, data?: Record<string, string | number>) => void };
 };
 const aw = window as AnalyticsWindow;
 const config: AnalyticsConfig = JSON.parse(
@@ -16,51 +18,44 @@ try {
   /* Storage is optional. */
 }
 const hasAnalytics =
-  (config.provider === 'ga4' && /^G-[A-Z0-9]+$/.test(config.id)) ||
-  (config.provider === 'plausible' && !!config.domain);
+  config.provider === 'umami' &&
+  /^[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/i.test(
+    config.websiteId,
+  ) &&
+  /^https:\/\//.test(config.scriptUrl);
 function loadAnalytics() {
   if (consent !== 'granted' || !hasAnalytics || analyticsLoaded) return;
   analyticsLoaded = true;
   const script = document.createElement('script');
   script.async = true;
-  if (config.provider === 'ga4') {
-    aw.dataLayer = aw.dataLayer || [];
-    aw.gtag = function () {
-      aw.dataLayer!.push(arguments);
-    };
-    aw.gtag('consent', 'default', {
-      analytics_storage: 'granted',
-      ad_storage: 'denied',
-      ad_user_data: 'denied',
-      ad_personalization: 'denied',
-    });
-    aw.gtag('js', new Date());
-    aw.gtag('config', config.id, {
-      send_page_view: true,
-      allow_google_signals: false,
-      allow_ad_personalization_signals: false,
-    });
-    script.src = `https://www.googletagmanager.com/gtag/js?id=${encodeURIComponent(config.id)}`;
-  } else {
-    script.src = 'https://plausible.io/js/script.js';
-    script.dataset.domain = config.domain;
-    aw.plausible = Object.assign(
-      function (...args: unknown[]) {
-        (aw.plausible!.q ||= []).push(args);
-      },
-      { q: [] as unknown[] },
-    );
-  }
+  script.src = config.scriptUrl;
+  script.dataset.websiteId = config.websiteId;
+  script.dataset.domains = location.hostname;
+  script.dataset.excludeSearch = 'true';
+  script.dataset.excludeHash = 'true';
   document.head.appendChild(script);
 }
 function track(name: string, props: Record<string, string | number> = {}) {
   if (consent !== 'granted' || !hasAnalytics) return;
-  if (config.provider === 'ga4') aw.gtag?.('event', name, props);
-  else aw.plausible?.(name, { props });
+  aw.umami?.track(name, props);
+}
+function loadMaps() {
+  if (consent !== 'granted') return;
+  document.querySelectorAll<HTMLElement>('[data-map-embed]').forEach((container) => {
+    if (container.querySelector('iframe') || !container.dataset.mapSrc) return;
+    const iframe = document.createElement('iframe');
+    iframe.title = container.dataset.mapTitle || 'Mapa de ubicación';
+    iframe.src = container.dataset.mapSrc;
+    iframe.loading = 'lazy';
+    iframe.referrerPolicy = 'no-referrer-when-downgrade';
+    iframe.allowFullscreen = true;
+    container.replaceChildren(iframe);
+  });
 }
 loadAnalytics();
+loadMaps();
 const banner = document.getElementById('cookie-banner');
-if (banner && hasAnalytics && !consent) banner.hidden = false;
+if (banner && !consent) banner.hidden = false;
 document.querySelectorAll<HTMLElement>('[data-cookie-settings]').forEach((button) =>
   button.addEventListener('click', () => {
     if (!banner) return;
@@ -69,15 +64,16 @@ document.querySelectorAll<HTMLElement>('[data-cookie-settings]').forEach((button
     if (status) {
       status.hidden = false;
       status.textContent = hasAnalytics
-        ? 'Puedes cambiar tu elección cuando quieras.'
-        : 'Actualmente no hay analítica activa. Solo se guarda tu preferencia de cookies en este navegador.';
+        ? 'Puedes cambiar tu elección para la medición con Umami y los mapas de Google.'
+        : 'Umami quedará activo al incorporar su identificador. La elección también controla los mapas de Google.';
     }
     banner.querySelector<HTMLButtonElement>('button')?.focus();
   }),
 );
 document.querySelectorAll<HTMLButtonElement>('[data-consent]').forEach((button) =>
   button.addEventListener('click', () => {
-    const previouslyLoaded = analyticsLoaded;
+    const externalContentLoaded =
+      analyticsLoaded || !!document.querySelector('[data-map-embed] iframe');
     consent = button.dataset.consent || 'denied';
     try {
       localStorage.setItem('republikken-consent-v1', consent);
@@ -85,23 +81,12 @@ document.querySelectorAll<HTMLButtonElement>('[data-consent]').forEach((button) 
       /* Continue without persistent storage. */
     }
     if (banner) banner.hidden = true;
-    if (consent === 'denied' && previouslyLoaded) {
-      aw.gtag?.('consent', 'update', { analytics_storage: 'denied' });
-      document.cookie.split(';').forEach((cookie) => {
-        const name = cookie.split('=')[0].trim();
-        if (/^_ga(?:_|$)|^_gid$|^_gat/.test(name)) {
-          const domains = [
-            undefined,
-            location.hostname,
-            `.${location.hostname}`,
-            `.${location.hostname.split('.').slice(-2).join('.')}`,
-          ];
-          for (const domain of domains)
-            document.cookie = `${name}=;Max-Age=0;path=/;${domain ? `domain=${domain};` : ''}SameSite=Lax`;
-        }
-      });
+    if (consent === 'denied' && externalContentLoaded) {
       location.reload();
-    } else loadAnalytics();
+    } else {
+      loadAnalytics();
+      loadMaps();
+    }
   }),
 );
 document.addEventListener('click', (event) => {
@@ -331,6 +316,7 @@ if (calculator) {
 const booking = document.querySelector('[data-booking]');
 if (booking) {
   const radios = [...booking.querySelectorAll<HTMLInputElement>('input[name="space"]')];
+  const marketing = booking.querySelector<HTMLInputElement>('#booking-marketing');
   const selected = new URLSearchParams(location.search).get('espacio');
   const initial = radios.find((r) => r.value === selected);
   if (initial) initial.checked = true;
@@ -342,7 +328,10 @@ if (booking) {
     link.href = input.dataset.cobot!;
     link.dataset.space = input.value;
     const wa = booking.querySelector<HTMLAnchorElement>('[data-booking-whatsapp]')!;
-    wa.href = `https://wa.me/34652505948?text=${encodeURIComponent(`Hola, Fran. Quería consultar disponibilidad de ${input.dataset.name!.toLowerCase()}.`)}`;
+    const marketingMessage = marketing?.checked
+      ? '\n\nQuiero recibir novedades y promociones de Republikken Maó por correo o WhatsApp. Puedo darme de baja cuando quiera.'
+      : '';
+    wa.href = `https://wa.me/34652505948?text=${encodeURIComponent(`Hola, Fran. Quería consultar disponibilidad de ${input.dataset.name!.toLowerCase()}.${marketingMessage}`)}`;
     wa.dataset.space = input.value;
     booking.querySelector('[data-booking-hint]')!.textContent =
       input.dataset.direct === 'true'
@@ -350,6 +339,7 @@ if (booking) {
         : 'Se abre el calendario general de salas en otra pestaña. Selecciona allí el recurso; si no aparece, consulta con Fran.';
   };
   radios.forEach((r) => r.addEventListener('change', update));
+  marketing?.addEventListener('change', update);
   update();
 }
 const form = document.querySelector<HTMLFormElement>('#quote-form');
@@ -457,6 +447,7 @@ if (form) {
         .filter(Boolean);
       if (data.getAll('servicios').length)
         lines.push(`Servicios: ${data.getAll('servicios').join(', ')}`);
+      if (data.get('marketing')) lines.push('Novedades y promociones: Sí, doy mi consentimiento.');
       const message = `Hola, Fran. Me gustaría pedir presupuesto para un evento en Republikken.\n\n${lines.join('\n')}\n\nHe leído la información de privacidad para esta solicitud.`;
       const intro = document.createElement('p');
       intro.textContent =

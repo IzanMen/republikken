@@ -35,7 +35,7 @@ export const legalPages = [
       },
       {
         title: 'Datos que facilitas',
-        text: 'El formulario pide nombre, correo y los detalles necesarios para preparar el evento. Empresa, teléfono, horario y comentarios son opcionales. No incluyas datos médicos ni información sensible. Los datos del formulario no se guardan en este navegador.',
+        text: 'El formulario pide nombre, correo y los detalles necesarios para preparar el evento. Empresa, teléfono, horario, comentarios y la elección de recibir novedades son opcionales. No incluyas datos médicos ni información sensible. Los datos del formulario no se guardan en este navegador.',
       },
       {
         title: 'Cómo se tramita tu solicitud',
@@ -43,11 +43,11 @@ export const legalPages = [
       },
       {
         title: 'Finalidad y base del tratamiento',
-        text: 'Atender tu consulta y preparar la propuesta que solicitas. [CONFIRMAR CON FRAN] Identificar la base jurídica aplicable, los plazos de conservación y el procedimiento de atención de derechos con la persona responsable de privacidad.',
+        text: 'Atender tu consulta y preparar la propuesta que solicitas. Si marcas la casilla opcional de novedades, tu consentimiento permite enviar promociones por correo o WhatsApp y puedes retirarlo cuando quieras. [CONFIRMAR CON FRAN] Identificar la base jurídica aplicable a la solicitud, los plazos de conservación y el procedimiento para retirar el consentimiento o ejercer derechos con la persona responsable de privacidad.',
       },
       {
         title: 'Servicios externos y destinatarios',
-        text: 'Cobot gestiona el proceso de reserva. WhatsApp, Google Maps e Instagram reciben información cuando utilizas sus servicios. El mapa incrustado solo se carga al pulsar Cargar mapa. [CONFIRMAR CON FRAN] Contratos con proveedores, destinatarios y posibles transferencias internacionales.',
+        text: 'Cobot gestiona el proceso de reserva. WhatsApp e Instagram reciben información cuando utilizas sus servicios. Umami Analytics trata datos de uso de la web y Google Maps recibe datos técnicos del navegador cuando se cargan sus mapas; ambos servicios quedan bloqueados hasta que aceptas las cookies opcionales. [CONFIRMAR CON FRAN] Contratos con proveedores, destinatarios y posibles transferencias internacionales.',
       },
       {
         title: 'Tus derechos',
@@ -63,19 +63,19 @@ export const legalPages = [
     sections: [
       {
         title: 'Lo que utiliza esta versión',
-        text: 'La analítica está desactivada de forma predeterminada. La web puede guardar tu elección de cookies en el almacenamiento local del navegador bajo la clave republikken-consent-v1. No se guardan los datos del formulario en ese almacenamiento.',
+        text: 'La web utiliza Umami Analytics para conocer de forma agregada cómo se usa el sitio. Umami no emplea cookies en su código de seguimiento, pero la web solo carga su script después de que aceptes las cookies opcionales. Tu elección se guarda en el almacenamiento local del navegador bajo la clave republikken-consent-v1. No se guardan los datos del formulario en ese almacenamiento.',
       },
       {
-        title: 'Medición opcional',
-        text: 'Si se configura GA4 o Plausible, el código de medición solo se carga tras pulsar Aceptar. Rechazar mantiene desactivada la medición. Puedes cambiar tu elección desde Configurar cookies, al pie de cualquier página.',
+        title: 'Medición con Umami',
+        text: 'Con tu consentimiento, Umami puede registrar páginas visitadas, procedencia, tipo de navegador, sistema operativo, tipo de dispositivo y ubicación aproximada, además de interacciones como clics de reserva o contacto. No enviamos a Umami nombres, correo, teléfono ni el contenido de los formularios. Rechazar mantiene desactivada la medición. Puedes cambiar tu elección desde Configurar cookies, al pie de cualquier página.',
       },
       {
         title: 'Contenido de terceros',
-        text: 'El mapa de Google se carga únicamente si pulsas Cargar mapa. Los enlaces a Cobot, WhatsApp e Instagram abren servicios externos que aplican sus propias políticas. Abrir esos servicios puede permitir que sus proveedores utilicen almacenamiento o cookies.',
+        text: 'Los mapas de Google solo se cargan si aceptas las cookies opcionales. Si no las aceptas, se muestra un aviso en su lugar. Los enlaces a Cobot, WhatsApp e Instagram abren servicios externos que aplican sus propias políticas. Abrir esos servicios puede permitir que sus proveedores utilicen almacenamiento o cookies.',
       },
       {
-        title: 'Inventario antes de publicar',
-        text: '[CONFIRMAR CON FRAN] Tras elegir las herramientas definitivas, revisar los nombres, proveedores, finalidades y duración de las cookies que realmente se utilicen. Actualizar este documento y la información de privacidad antes de activar la medición.',
+        title: 'Proveedores y revisión',
+        text: 'Umami Analytics es un servicio de Umami Software, Inc. Google Maps es un servicio de Google. [CONFIRMAR CON FRAN] Antes de publicar, incorporar los datos contractuales definitivos, revisar las transferencias internacionales y verificar en producción el almacenamiento que realmente generen los servicios configurados.',
       },
     ],
   },

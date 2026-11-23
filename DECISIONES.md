@@ -27,7 +27,7 @@ Se verificaron la web oficial y Cobot. El enlace general de salas existe; no hay
 
 Sin endpoint de formularios, la solicitud se prepara en el navegador y solo se envía cuando el visitante lo hace en WhatsApp. Con endpoint, el éxito depende de una respuesta HTTP correcta. Las pruebas de envío usan respuestas simuladas y no contactan a Fran.
 
-El mapa y las etiquetas de medición no se descargan al entrar. El mapa responde a una acción explícita; la analítica a consentimiento y configuración. Las páginas legales son borradores marcados y no indexables, pendientes de datos reales y revisión.
+El mapa y la etiqueta de Umami no se descargan al entrar. Ambos dependen del consentimiento de cookies opcionales: al aceptar se cargan automáticamente; al rechazar, el mapa se sustituye por un aviso. Las páginas legales son borradores marcados y no indexables, pendientes de datos reales y revisión.
 
 ## SEO, datos y rendimiento
 
