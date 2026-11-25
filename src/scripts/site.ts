@@ -448,7 +448,7 @@ if (form) {
       if (data.getAll('servicios').length)
         lines.push(`Servicios: ${data.getAll('servicios').join(', ')}`);
       if (data.get('marketing')) lines.push('Novedades y promociones: Sí, doy mi consentimiento.');
-      const message = `Hola, Fran. Me gustaría pedir presupuesto para un evento en Republikken.\n\n${lines.join('\n')}\n\nHe leído la información de privacidad para esta solicitud.`;
+      const message = `Hola, Fran. Me gustaría pedir presupuesto para un evento en Republikken.\n\n${lines.join('\n')}\n\nHe leído la política de privacidad y acepto que Republikken C.B. use mis datos para responder a mi solicitud.`;
       const intro = document.createElement('p');
       intro.textContent =
         'Tu solicitud está preparada. Todavía no se ha enviado. Abre WhatsApp, revisa el mensaje y pulsa Enviar para que Fran lo reciba.';

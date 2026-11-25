@@ -31,9 +31,9 @@ export const site = {
     websiteId: import.meta.env.PUBLIC_UMAMI_WEBSITE_ID || '',
     scriptUrl: import.meta.env.PUBLIC_UMAMI_SCRIPT_URL || 'https://cloud.umami.is/script.js',
   },
-  // Activar únicamente con titularidad y textos revisados.
-  legalVerified: false,
-  legal: { owner: '[CONFIRMAR CON FRAN]', taxId: '[CONFIRMAR CON FRAN]' },
+  // Textos legales revisados por Fran (noviembre de 2026).
+  legalVerified: true,
+  legal: { owner: 'Republikken C.B.', taxId: 'E72910722' },
   chamber: { enabled: false, image: '/brand/sello-club-camara.svg', href: '' },
   socialProof: {
     enabled: false,

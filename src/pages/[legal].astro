@@ -18,12 +18,16 @@ const { page } = Astro.props;
     <div class="page-intro">
       <h1>{page.title}</h1>
     </div>
-    {page.slug === 'cookies' && (
-      <div class="prose">
-        <button class="button" data-cookie-settings>
-          Configurar cookies
-        </button>
-      </div>
-    )}
+    <div class="prose legal-prose">
+      <Fragment set:html={page.body} />
+      {page.slug === 'cookies' && (
+        <p>
+          <button class="button" data-cookie-settings>
+            Configurar cookies
+          </button>
+        </p>
+      )}
+      {page.after && <Fragment set:html={page.after} />}
+    </div>
   </article>
 </Layout>
