@@ -19,7 +19,7 @@ Un despacho por horas permite reservar para citas concretas, una jornada de conc
 
 Para el local, reúne tus propios presupuestos de alquiler, suministros, limpieza, mobiliario y los trámites que correspondan a tu actividad. Separa los gastos de arranque de los recurrentes. No hay una cifra universal que sirva para todos los profesionales.
 
-Para el despacho flexible, multiplica las horas previstas por la tarifa y comprueba lo que incluye. En Republikken se incluyen limpieza, suministros y climatización. Los precios se expresan sin IVA; utiliza la misma base al comparar tus alternativas.
+Para el despacho flexible, multiplica las horas previstas por la tarifa y comprueba lo que incluye. En Republikken está todo incluido: limpieza, suministros y climatización. Los precios se expresan sin IVA; utiliza la misma base al comparar tus alternativas.
 
 La [calculadora de la página de profesionales](/profesionales) permite introducir tus horas y tu estimación de coste mensual. Es una orientación con tarifa base, sin descuentos por volumen ni servicios adicionales.
 
@@ -28,6 +28,10 @@ La [calculadora de la página de profesionales](/profesionales) permite introduc
 Una dirección fácil de explicar, privacidad durante la conversación y una sala lista al llegar pueden ser más útiles que disponer de espacio todos los días. También conviene revisar el equipamiento y confirmar las condiciones de acceso y cancelación.
 
 Si tu actividad necesita autorización sanitaria, compruébalo antes de reservar: los espacios de Republikken no están habilitados para consultas clínicas, fisioterapia ni tratamientos con aparatología médica.
+
+## Si eres entrenador personal
+
+Si tu trabajo es entrenar a tus clientes, no necesitas un gimnasio propio. La [sala de yoga, pilates y fitness](/entrenadores-fitness) se alquila por horas para entrenamiento personal uno a uno y en privado: durante la reserva, tú y tu cliente tenéis la sala en exclusiva, con el material a la vista y todo incluido. También sirve para clases reducidas de yoga o pilates.
 
 ## Prueba con tu agenda real
 
