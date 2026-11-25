@@ -3573,3 +3573,127 @@ body.page-leaving .site-footer {
     transform: none;
   }
 }
+
+/* Carrusel infinito de logos (home) */
+.logo-marquee-section {
+  padding-block: var(--space);
+  border-top: 1px solid var(--line);
+  overflow: hidden;
+}
+.logo-marquee-heading .eyebrow {
+  display: block;
+}
+.logo-marquee-viewport {
+  --marquee-gap: 18px;
+  overflow: hidden;
+  outline: none;
+  -webkit-mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent);
+  mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent);
+}
+.logo-marquee-viewport:focus-visible {
+  outline: 2px solid var(--olive);
+  outline-offset: 4px;
+}
+.logo-marquee-track {
+  display: flex;
+  width: max-content;
+  animation: logo-marquee 55s linear infinite;
+}
+.logo-marquee-viewport:hover .logo-marquee-track,
+.logo-marquee-viewport:focus-within .logo-marquee-track {
+  animation-play-state: paused;
+}
+.logo-marquee-group {
+  display: flex;
+  gap: var(--marquee-gap);
+  padding-right: var(--marquee-gap);
+}
+.logo-marquee-item {
+  flex: 0 0 auto;
+  width: 210px;
+  height: 130px;
+  display: grid;
+  place-items: center;
+  padding: 14px;
+  overflow: hidden;
+  background: #fbfaf6;
+  border: 1px solid var(--line);
+}
+.logo-marquee-item img {
+  width: auto;
+  height: auto;
+  max-width: 100%;
+  max-height: 100px;
+  transform: scale(var(--logo-scale, 1));
+}
+@keyframes logo-marquee {
+  from {
+    transform: translate3d(-50%, 0, 0);
+  }
+  to {
+    transform: translate3d(0, 0, 0);
+  }
+}
+@media (max-width: 600px) {
+  .logo-marquee-viewport {
+    --marquee-gap: 10px;
+  }
+  .logo-marquee-item {
+    width: 150px;
+    height: 96px;
+    padding: 10px;
+  }
+  .logo-marquee-item img {
+    max-height: 74px;
+  }
+  .logo-marquee-track {
+    animation-duration: 40s;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .logo-marquee-viewport {
+    overflow-x: auto;
+    -webkit-mask-image: none;
+    mask-image: none;
+  }
+  .logo-marquee-track {
+    animation: none;
+  }
+  .logo-marquee-group[aria-hidden='true'] {
+    display: none;
+  }
+}
+
+/* Banda de logos dentro del hero */
+.hero-logos {
+  padding: 22px 0;
+  border-bottom: 1px solid var(--line);
+  animation: hero-enter 0.9s var(--ease) 480ms both;
+}
+.logo-marquee-compact {
+  --marquee-gap: 12px;
+}
+.logo-marquee-compact .logo-marquee-track {
+  animation-duration: 45s;
+}
+.logo-marquee-compact .logo-marquee-item {
+  width: 150px;
+  height: 84px;
+  padding: 10px;
+}
+.logo-marquee-compact .logo-marquee-item img {
+  max-height: 64px;
+}
+@media (max-width: 600px) {
+  .logo-marquee-compact {
+    --marquee-gap: 8px;
+  }
+  .logo-marquee-compact .logo-marquee-item {
+    width: 120px;
+    height: 70px;
+    padding: 8px;
+  }
+  .logo-marquee-compact .logo-marquee-item img {
+    max-height: 54px;
+  }
+}

@@ -1,0 +1,78 @@
+---
+import { Image } from 'astro:assets';
+import Icon from './Icon.astro';
+import { partners } from '../data/partners';
+
+interface Props {
+  /** Solo la banda de logos, sin sección ni título (p. ej. dentro del hero). */
+  compact?: boolean;
+}
+
+const { compact = false } = Astro.props;
+const groups = [false, true];
+---
+
+{compact ? (
+  <div
+    class="logo-marquee-viewport logo-marquee-compact"
+    tabindex="0"
+    aria-label="Logotipos de profesionales y entidades de Republikken"
+  >
+    <div class="logo-marquee-track">
+      {groups.map((duplicate) => (
+        <div class="logo-marquee-group" aria-hidden={duplicate ? 'true' : undefined}>
+          {partners.map((partner) => (
+            <div class="logo-marquee-item" style={`--logo-scale:${partner.scale || 1}`}>
+              <Image
+                src={partner.logo}
+                alt={duplicate ? '' : `Logotipo de ${partner.name}`}
+                widths={[150, 300]}
+                sizes="150px"
+                format="webp"
+                quality={86}
+                loading="lazy"
+              />
+            </div>
+          ))}
+        </div>
+      ))}
+    </div>
+  </div>
+) : (
+  <section class="logo-marquee-section" aria-labelledby="logo-marquee-title">
+    <div class="wrap section-heading logo-marquee-heading">
+      <div>
+        <span class="eyebrow">La comunidad</span>
+        <h2 id="logo-marquee-title">Proyectos que comparten Republikken.</h2>
+      </div>
+      <a class="text-link" href="/profesionales-republikken">
+        Conoce a los profesionales <Icon />
+      </a>
+    </div>
+    <div
+      class="logo-marquee-viewport"
+      tabindex="0"
+      aria-label="Logotipos de profesionales y entidades de Republikken"
+    >
+      <div class="logo-marquee-track">
+        {groups.map((duplicate) => (
+          <div class="logo-marquee-group" aria-hidden={duplicate ? 'true' : undefined}>
+            {partners.map((partner) => (
+              <div class="logo-marquee-item" style={`--logo-scale:${partner.scale || 1}`}>
+                <Image
+                  src={partner.logo}
+                  alt={duplicate ? '' : `Logotipo de ${partner.name}`}
+                  widths={[210, 420]}
+                  sizes="210px"
+                  format="webp"
+                  quality={86}
+                  loading="lazy"
+                />
+              </div>
+            ))}
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+)}

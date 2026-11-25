@@ -14,6 +14,7 @@ import common from '../assets/images/zonas-comunes-republikken.jpg';
 import { commonFAQ, site, spaceById } from '../data/config';
 import { homeCopy } from '../data/copy';
 import SocialProof from '../components/SocialProof.astro';
+import LogoMarquee from '../components/LogoMarquee.astro';
 const faqs = commonFAQ.slice(0, 3);
 ---
 
@@ -92,6 +93,9 @@ const faqs = commonFAQ.slice(0, 3);
         <Icon name="pin" />
         En el centro de Maó
       </span>
+    </div>
+    <div class="hero-logos">
+      <LogoMarquee compact />
     </div>
   </section>
   <section class="brand-motto" aria-label="Lema de Republikken">
@@ -210,6 +214,7 @@ const faqs = commonFAQ.slice(0, 3);
       </div>
     </div>
   </section>
+  <LogoMarquee />
   <Host />
   <SocialProof />
   <section class="location-section wrap">
