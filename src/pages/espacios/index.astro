@@ -5,7 +5,7 @@ import Icon from '../../components/Icon.astro';
 import CTA from '../../components/CTA.astro';
 import { spaces, priceLabel, reserveUrl } from '../../data/config';
 import office from '../../assets/images/despacho-privado-mao.jpg';
-import event from '../../assets/images/evento-formacion-republikken-mao.webp';
+import event from '../../assets/images/evento-formacion-republikken-mao-anonimizado.png';
 import fitness from '../../assets/images/sala-yoga-fitness-republikken-mao.webp';
 const spaceMedia = {
   despacho: {
@@ -18,7 +18,7 @@ const spaceMedia = {
   },
   fitness: {
     src: fitness,
-    alt: 'Sala de yoga y fitness de Republikken Maó con suelo de madera y espejos',
+    alt: 'Sala de yoga, pilates y fitness de Republikken Maó con suelo de madera y espejos',
   },
   miranda: {
     src: office,
@@ -58,7 +58,7 @@ const schema = spaces.map((s) => ({
       <h1>Despachos y salas por horas en Maó.</h1>
       <p>
         Espacios para trabajar, cuidarse y crecer en el centro de Maó. Cada uno con su carácter;
-        todos con limpieza, suministros y climatización incluidos.
+        todos con todo incluido.
       </p>
     </div>
     {spaces.map((s, i) => (
@@ -82,13 +82,14 @@ const schema = spaces.map((s) => ({
           {s.id === 'eventos' && (
             <p>
               85 m², sin luz natural y con iluminación cuidada. Hasta 70 personas en auditorio o 24
-              con mesas. Combinable con la sala de yoga contigua y un despacho, bajo presupuesto.
+              con mesas. Combinable con la sala contigua y un despacho, bajo presupuesto.
             </p>
           )}
           {s.id === 'fitness' && (
             <p>
-              Para entrenamiento personal, yoga, pilates suelo y movimiento en grupos reducidos.
-              Consulta el aforo y las cantidades de material según tu actividad.
+              Para entrenamiento personal uno a uno y en privado, yoga, pilates suelo y movimiento
+              en grupos reducidos. Consulta el aforo y las cantidades de material según tu
+              actividad.
             </p>
           )}
           <ul>

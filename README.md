@@ -47,7 +47,8 @@ Los esquemas Zod validan espacios, landings, FAQ, copy principal y guías. Las g
 - `/profesionales`: despacho privado, casos de uso y calculadora.
 - `/reuniones-empresas`: misma sala de eventos, intención reuniones y juntas de 4–24 personas.
 - `/eventos-formaciones`: actos y formación para hasta 70 personas, presupuesto como CTA prioritario.
-- `/entrenadores-fitness`: uso exclusivo, material y clases recurrentes.
+- `/entrenadores-fitness`: sala de yoga, pilates y fitness; uso exclusivo, entrenamiento personal, material y clases recurrentes.
+- `/pases-bonos`: oferta estacional de junio a finales de septiembre y consulta fuera de temporada.
 - `/espacios`, `/tarifas`, `/como-funciona`, `/reservar`.
 - `/presupuesto`, `/contacto`, `/preguntas-frecuentes`.
 - `/guias` y tres guías informativas con enlaces comerciales.
@@ -56,7 +57,7 @@ Los esquemas Zod validan espacios, landings, FAQ, copy principal y guías. Las g
 
 ## Conectar Cobot
 
-La URL pública real verificada es `https://republikken-mao.cobot.me/book`. No se enlaza la portada de Cobot: todavía ofrece bonos de coworking compartido que el nuevo brief deja en pausa.
+La URL pública de reservas es `https://republikken-mao.cobot.me/book`. La página de pases y bonos enlaza la portada pública de Cobot, donde se publica la oferta estacional.
 
 1. En Cobot, habilita los recursos de reserva externa y comprueba tarifas, IVA, horarios, condiciones y pago.
 2. Copia la **URL real de cada recurso** a `site.cobot.despacho`, `.eventos` y `.fitness`.

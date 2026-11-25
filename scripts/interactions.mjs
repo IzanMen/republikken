@@ -95,7 +95,7 @@ await test('Booking respects deep link and updates outgoing resource and WhatsAp
   assert.match(t.doc.querySelector('[data-booking-price]').textContent, /15/);
   assert.match(
     decodeURIComponent(t.doc.querySelector('[data-booking-whatsapp]').href),
-    /yoga y fitness/,
+    /yoga, pilates y fitness/,
   );
   assert.equal(t.doc.querySelector('[data-booking-link]').dataset.space, 'fitness');
   marketing.click();

@@ -23,7 +23,7 @@ Prepara una copia local de tu presentación y comprueba la legibilidad de las di
 
 ## Piensa en lo que ocurre antes y después
 
-La recepción, una pausa y las conversaciones al terminar también forman parte del evento. La sala de yoga contigua puede complementar una demostración o una recepción; un despacho puede servir como sala auxiliar. La combinación se acuerda según disponibilidad y presupuesto.
+La recepción, una pausa y las conversaciones al terminar también forman parte del evento. La sala contigua puede complementar una demostración o una recepción; un despacho puede servir como sala auxiliar. La combinación se acuerda según disponibilidad y presupuesto.
 
 El catering propio permite organizar desde un coffee break hasta una comida completa. Indica el número de asistentes, la hora de servicio y las necesidades alimentarias sin compartir información personal innecesaria.
 

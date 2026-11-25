@@ -1,0 +1,108 @@
+---
+import { Image } from 'astro:assets';
+import Layout from '../layouts/Layout.astro';
+import Icon from '../components/Icon.astro';
+import CTA from '../components/CTA.astro';
+import common from '../assets/images/zonas-comunes-republikken.jpg';
+import EditorialHero from '../components/EditorialHero.astro';
+import carmelaDiez from '../assets/partners/carmela-diez-psicologa.jpeg';
+import tke from '../assets/partners/tke.jpeg';
+import yogaLoft from '../assets/partners/the-yoga-loft.jpeg';
+import slowMove from '../assets/partners/slow-move.jpeg';
+import sandraMendez from '../assets/partners/sandra-mendez.jpeg';
+import saturadeta from '../assets/partners/saturadeta-mao.jpeg';
+import metamorfic from '../assets/partners/metamorfic.jpeg';
+import menorcaFitness from '../assets/partners/menorca-nutrition-fitness.jpeg';
+import gosiNails from '../assets/partners/gosi-nails.jpeg';
+import flechazos from '../assets/partners/flechazos-menorca.jpeg';
+import estefiGomila from '../assets/partners/estefi-gomila.jpeg';
+import atipic from '../assets/partners/atipic.jpeg';
+import andrea from '../assets/partners/andrea.jpeg';
+import proyectoIx from '../assets/partners/proyecto-ix.jpg';
+
+const professionals = [
+  { name: 'Carmela Díez · Psicóloga', logo: carmelaDiez, scale: 1.7 },
+  { name: 'TKE', logo: tke, scale: 1.45 },
+  { name: 'The Yoga Loft', logo: yogaLoft },
+  { name: 'Slow Move · Salut i moviment', logo: slowMove },
+  { name: 'Sandra Méndez · Pedagoga', logo: sandraMendez },
+  { name: "S'Aturadeta Maó", logo: saturadeta, scale: 1.15 },
+  { name: 'Metamorfic', logo: metamorfic },
+  { name: 'Menorca Nutrition & Fitness', logo: menorcaFitness },
+  { name: 'Gosi Nails Studio', logo: gosiNails },
+  { name: 'Flechazos Menorca', logo: flechazos },
+  { name: 'Estefi Gomila', logo: estefiGomila, scale: 1.12 },
+  { name: 'Atípic · Centro de estética', logo: atipic },
+  { name: 'Andrea', logo: andrea, scale: 1.08 },
+  { name: 'Proyecto IX', logo: proyectoIx },
+];
+---
+
+<Layout
+  title="La comunidad profesional de Republikken en Maó"
+  description="Conoce Republikken en su conjunto: unos 1.300 m², dos centros en Maó y una comunidad de profesionales con espacios fijos y rotativos."
+  breadcrumbs={[{ name: 'Comunidad profesional', url: '/profesionales-republikken' }]}
+>
+  <div class="wrap">
+    <EditorialHero
+      src={common}
+      alt="Zona común de Republikken compartida por su comunidad profesional"
+      caption="Compartiendo ideas, energía y espacio."
+    >
+      <h1>Un centro, muchos proyectos profesionales.</h1>
+      <p>
+        Republikken no son solo los espacios que se reservan por horas. Es una comunidad que
+        trabaja, atiende, enseña y crea en el centro de Maó.
+      </p>
+    </EditorialHero>
+    <section class="community-overview">
+      <div>
+        <span class="eyebrow">La dimensión de Republikken</span>
+        <h2>Unos 1.300 m² y dos centros.</h2>
+        <p>
+          Republikken Maó reúne espacios flexibles y despachos permanentes entre sus entradas de C/
+          Doctor Camps, 35 y Av. Josep Anselm Clavé, 56. A este ecosistema se suma el nuevo centro
+          de Plaza Miranda.
+        </p>
+      </div>
+      <div>
+        <h2>Profesionales fijos y rotativos.</h2>
+        <p>
+          Algunos desarrollan aquí su actividad cada día; otros utilizan los espacios según su
+          agenda. Distintas especialidades comparten una misma forma de entender el trabajo y la
+          comunidad.
+        </p>
+        <a class="text-link" href="/contacto">
+          Forma parte de la comunidad <Icon />
+        </a>
+      </div>
+    </section>
+    <section class="professional-list" aria-labelledby="professional-list-title">
+      <span class="eyebrow">Directorio</span>
+      <h2 id="professional-list-title">Profesionales de Republikken.</h2>
+      <p>
+        Proyectos y profesionales que forman parte de la comunidad y hacen de Republikken un lugar
+        donde compartir ideas, energía y espacio.
+      </p>
+      <div class="professional-logo-grid">
+        {professionals.map((professional) => (
+          <article class="professional-logo-card">
+            <div class="professional-logo-media" style={`--logo-scale:${professional.scale || 1}`}>
+              <Image
+                src={professional.logo}
+                alt={`Logotipo de ${professional.name}`}
+                widths={[260, 520]}
+                sizes="(max-width: 600px) 45vw, (max-width: 1000px) 30vw, 22vw"
+                format="webp"
+                quality={88}
+                loading="lazy"
+              />
+            </div>
+            <h3>{professional.name}</h3>
+          </article>
+        ))}
+      </div>
+    </section>
+  </div>
+  <CTA title="Compartiendo ideas, energía y espacio." />
+</Layout>

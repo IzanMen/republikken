@@ -1,0 +1,68 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Icon from '../components/Icon.astro';
+import CTA from '../components/CTA.astro';
+import { site, whatsapp } from '../data/config';
+---
+
+<Layout
+  title="Pases diarios y bonos de coworking en Maó | Republikken"
+  description="Pase diario y bonos de 5 días o por horas en Maó, disponibles de junio a finales de septiembre. Consulta opciones y disponibilidad."
+  breadcrumbs={[{ name: 'Pases y bonos', url: '/pases-bonos' }]}
+>
+  <div class="wrap passes-page">
+    <div class="page-intro">
+      <span class="eyebrow">De junio a finales de septiembre</span>
+      <h1>Pases y bonos para trabajar en Maó.</h1>
+      <p>
+        En temporada de verano ofrecemos pase diario y bonos de 5 días o por horas. Las condiciones
+        definitivas se mostrarán en Cobot antes de contratar.
+      </p>
+      <div class="actions">
+        <a class="button" href={site.cobot.passes} target="_blank" rel="noopener noreferrer">
+          Ver pases y bonos en Cobot <Icon name="diagonal" />
+        </a>
+        <a
+          class="text-link"
+          href={whatsapp(
+            'Hola, Fran. Quería consultar disponibilidad de un pase o bono de coworking.',
+          )}
+          target="_blank"
+          rel="noopener noreferrer"
+          data-track="whatsapp_click"
+        >
+          Consultar un hueco <Icon name="chat" />
+        </a>
+      </div>
+    </div>
+    <section class="pass-grid" aria-label="Modalidades de pases y bonos">
+      <article>
+        <span>01</span>
+        <h2>Pase diario</h2>
+        <p>Para venir un día concreto y trabajar sin permanencia, sujeto a disponibilidad.</p>
+      </article>
+      <article>
+        <span>02</span>
+        <h2>Bono de 5 días</h2>
+        <p>Para repartir varias jornadas durante el periodo y según las condiciones publicadas.</p>
+      </article>
+      <article>
+        <span>03</span>
+        <h2>Bono por horas</h2>
+        <p>Una opción flexible para utilizar solo las horas que necesites.</p>
+      </article>
+    </section>
+    <aside class="season-note">
+      <h2>¿Vienes fuera de temporada?</h2>
+      <p>
+        De octubre a mayo no ofrecemos estos pases de forma regular. Aun así, puedes enviarnos una
+        consulta y comprobaremos si podemos ofrecerte algún hueco.
+      </p>
+    </aside>
+  </div>
+  <CTA
+    title="Consulta si tenemos un hueco para ti."
+    href="/contacto"
+    label="Habla con Republikken"
+  />
+</Layout>

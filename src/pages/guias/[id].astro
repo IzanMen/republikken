@@ -5,7 +5,7 @@ import CTA from '../../components/CTA.astro';
 import EditorialHero from '../../components/EditorialHero.astro';
 import office from '../../assets/images/despacho-privado-mao.jpg';
 import meeting from '../../assets/images/sala-reuniones-republikken-mao.webp';
-import event from '../../assets/images/evento-profesional-republikken-mao.webp';
+import event from '../../assets/images/evento-profesional-republikken-mao-anonimizado.png';
 export async function getStaticPaths() {
   const guides = await getCollection('guias');
   return guides.map((guide) => ({ params: { id: guide.id }, props: { guide } }));
@@ -17,9 +17,9 @@ const guideMedia = {
     src: office,
     alt: 'Despacho privado por horas de Republikken en Maó',
   },
-  'junta-propietarios-mao': {
+  'organizar-curso-formacion-mao': {
     src: meeting,
-    alt: 'Sala de reuniones preparada para una junta en Republikken Maó',
+    alt: 'Sala de reuniones preparada para un curso o formación en Republikken Maó',
   },
   'presentacion-producto-mao': {
     src: event,

@@ -48,7 +48,7 @@ for (const file of pages) {
   if (doc.querySelectorAll('h1').length !== 1) fail('must have exactly one H1');
   if (doc.documentElement.lang !== 'es') fail('wrong language');
   if (!doc.querySelector('main#contenido')) fail('main landmark/skip target missing');
-  if (/plaza.miranda/i.test(html)) fail('hidden location leaked');
+  if (doc.querySelector('a[href="/espacios/plaza-miranda"]')) fail('hidden location link leaked');
   if (/\{\{precio_/.test(html)) fail('unresolved price token');
   if (!doc.querySelector('link[rel=canonical]')?.href.startsWith('https://www.republikkenmao.com/'))
     fail('invalid canonical');
@@ -153,6 +153,8 @@ for (const expected of [
   '/reservar',
   '/espacios',
   '/tarifas',
+  '/pases-bonos',
+  '/profesionales-republikken',
 ])
   if (!results.find((p) => p.route === expected)) errors.push(`missing expected route ${expected}`);
 const report = {

@@ -94,6 +94,16 @@ const faqs = commonFAQ.slice(0, 3);
       </span>
     </div>
   </section>
+  <section class="brand-motto" aria-label="Lema de Republikken">
+    <div class="wrap">
+      <Cube />
+      <p>
+        Compartiendo ideas,
+        <br />
+        <span>energía y espacio.</span>
+      </p>
+    </div>
+  </section>
   <section class="section wrap" id="tu-espacio">
     <div class="section-heading">
       <h2>{homeCopy.spacesHeading}</h2>
@@ -116,7 +126,7 @@ const faqs = commonFAQ.slice(0, 3);
     </div>
     <SpaceCards />
     <div class="spaces-note">
-      <p>Limpieza, suministros y climatización incluidos. Precios + IVA.</p>
+      <p>Todo incluido. Precios + IVA.</p>
       <a class="text-link" href="/reuniones-empresas">
         ¿Una reunión de equipo? También tienes sitio. <Icon />
       </a>
@@ -171,14 +181,46 @@ const faqs = commonFAQ.slice(0, 3);
       </div>
     </div>
   </section>
+  <section class="dimension-section section">
+    <div class="wrap dimension-inner">
+      <div>
+        <span class="eyebrow">Todo Republikken</span>
+        <h2>Mucho más que tres espacios por horas.</h2>
+        <p>
+          Republikken reúne unos 1.300 m² en el centro de Maó y crece con el nuevo centro de Plaza
+          Miranda. Conviven espacios flexibles, despachos fijos y profesionales que van rotando.
+        </p>
+        <a class="text-link" href="/profesionales-republikken">
+          Conoce la comunidad profesional <Icon />
+        </a>
+      </div>
+      <div class="dimension-facts" aria-label="Republikken en cifras">
+        <div>
+          <strong>1.300 m²</strong>
+          <span>en el centro de Maó</span>
+        </div>
+        <div>
+          <strong>2 centros</strong>
+          <span>Republikken Maó y Plaza Miranda</span>
+        </div>
+        <div>
+          <strong>Una comunidad</strong>
+          <span>profesionales fijos y rotativos</span>
+        </div>
+      </div>
+    </div>
+  </section>
   <Host />
   <SocialProof />
   <section class="location-section wrap">
     <div>
       <h2>Republikken está en el centro de Maó.</h2>
-      <p class="address">{site.address}</p>
+      <p class="address">
+        {site.address} · {site.secondEntrance}
+      </p>
       <p>
-        También por {site.secondEntrance}.<br />
+        Dos entradas al mismo centro.
+        <br />
         {site.postalCode} Maó, Menorca · {site.hours}
       </p>
       <a class="text-link" href="/contacto">

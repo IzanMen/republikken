@@ -1,5 +1,5 @@
 {
-  "checkedAt": "2026-11-23T16:18:23.721Z",
+  "checkedAt": "2026-11-25T15:45:42.288Z",
   "pages": [
     {
       "route": "/404.html",
@@ -68,8 +68,8 @@
     },
     {
       "route": "/entrenadores-fitness",
-      "title": "Alquiler de sala de yoga y fitness en Maó | Republikken",
-      "titleLength": 55,
+      "title": "Sala de yoga, pilates y fitness en Maó | Republikken",
+      "titleLength": 52,
       "descriptionLength": 125,
       "schemaTypes": [
         "Organization",
@@ -79,7 +79,7 @@
         "FAQPage",
         "Service"
       ],
-      "faqCount": 6
+      "faqCount": 7
     },
     {
       "route": "/espacios",
@@ -110,7 +110,7 @@
         "FAQPage",
         "Service"
       ],
-      "faqCount": 6
+      "faqCount": 7
     },
     {
       "route": "/guias/despacho-por-horas-o-local",
@@ -140,10 +140,10 @@
       "faqCount": 0
     },
     {
-      "route": "/guias/junta-propietarios-mao",
-      "title": "Organizar una junta de propietarios fuera de la finca",
-      "titleLength": 53,
-      "descriptionLength": 125,
+      "route": "/guias/organizar-curso-formacion-mao",
+      "title": "Cómo organizar un curso o una formación en Maó",
+      "titleLength": 46,
+      "descriptionLength": 144,
       "schemaTypes": [
         "Organization",
         "LocalBusiness",
@@ -181,6 +181,19 @@
       "faqCount": 3
     },
     {
+      "route": "/pases-bonos",
+      "title": "Pases diarios y bonos de coworking en Maó | Republikken",
+      "titleLength": 55,
+      "descriptionLength": 131,
+      "schemaTypes": [
+        "Organization",
+        "LocalBusiness",
+        "WebSite",
+        "BreadcrumbList"
+      ],
+      "faqCount": 0
+    },
+    {
       "route": "/preguntas-frecuentes",
       "title": "Preguntas frecuentes sobre reservas | Republikken",
       "titleLength": 49,
@@ -192,7 +205,7 @@
         "BreadcrumbList",
         "FAQPage"
       ],
-      "faqCount": 18
+      "faqCount": 20
     },
     {
       "route": "/presupuesto",
@@ -236,6 +249,19 @@
       "faqCount": 6
     },
     {
+      "route": "/profesionales-republikken",
+      "title": "La comunidad profesional de Republikken en Maó",
+      "titleLength": 46,
+      "descriptionLength": 133,
+      "schemaTypes": [
+        "Organization",
+        "LocalBusiness",
+        "WebSite",
+        "BreadcrumbList"
+      ],
+      "faqCount": 0
+    },
+    {
       "route": "/reservar",
       "title": "Reserva tu espacio por horas en Maó | Republikken",
       "titleLength": 49,
@@ -267,7 +293,7 @@
       "route": "/tarifas",
       "title": "Tarifas de despachos y salas en Maó | Republikken",
       "titleLength": 49,
-      "descriptionLength": 134,
+      "descriptionLength": 113,
       "schemaTypes": [
         "Organization",
         "LocalBusiness",

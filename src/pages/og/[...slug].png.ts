@@ -13,6 +13,8 @@ const staticPages = [
   ['reservar', 'RESERVA TU ESPACIO.'],
   ['preguntas-frecuentes', 'TODO, MÁS CLARO.'],
   ['guias', 'IDEAS QUE PIDEN ESPACIO.'],
+  ['pases-bonos', 'PASES Y BONOS.'],
+  ['profesionales-republikken', 'UNA COMUNIDAD PROFESIONAL.'],
   ['aviso-legal', 'AVISO LEGAL'],
   ['privacidad', 'PRIVACIDAD'],
   ['cookies', 'TÚ DECIDES.'],

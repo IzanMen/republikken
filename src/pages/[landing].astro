@@ -8,9 +8,11 @@ import Calculator from '../components/Calculator.astro';
 import { landings } from '../data/landings';
 import { spaceById, priceLabel, whatsapp, reserveUrl, commonFAQ } from '../data/config';
 import office from '../assets/images/despacho-privado-mao.jpg';
-import event from '../assets/images/evento-profesional-republikken-mao.webp';
+import event from '../assets/images/evento-profesional-republikken-mao-anonimizado.png';
 import meeting from '../assets/images/sala-reuniones-republikken-mao.webp';
 import fitness from '../assets/images/entrenamiento-personal-republikken-mao.webp';
+import fitnessRoom from '../assets/images/sala-yoga-fitness-republikken-mao.webp';
+import fitnessClass from '../assets/images/clase-yoga-republikken-mao.webp';
 export function getStaticPaths() {
   return landings.map((landing) => ({ params: { landing: landing.slug }, props: { landing } }));
 }
@@ -81,8 +83,7 @@ const schema = [
   <section class="landing-hero wrap">
     <div>
       <h1 class="landing-heading">
-        {landing.heading}{' '}
-        <span>{landing.accent}</span>
+        {landing.heading} <span>{landing.accent}</span>
       </h1>
       <p class="landing-intro">{landing.intro}</p>
       <p class="landing-price">
@@ -114,7 +115,7 @@ const schema = [
       </div>
       <p class="risk-line">
         <Icon name="check" />
-        Sin permanencia · Limpieza y climatización incluidas
+        Sin permanencia · Todo incluido
       </p>
     </div>
     <div class="landing-photo">
@@ -174,7 +175,7 @@ const schema = [
         <ul>
           <li>Catering propio y necesidades alimentarias</li>
           <li>Montaje a medida y acompañamiento</li>
-          <li>Sala de yoga contigua para demostraciones</li>
+          <li>Sala contigua para demostraciones</li>
           <li>Despacho como sala auxiliar</li>
         </ul>
         <p>Servicios adicionales bajo presupuesto.</p>
@@ -187,27 +188,60 @@ const schema = [
     </div>
   )}
   {space.id === 'fitness' && (
-    <section class="wrap quote-feature">
-      <div>
-        <h2>Alquila una sala profesional sin montar tu propio estudio.</h2>
-        <p>
-          Si quieres venir cada semana, hablamos de tus franjas y de una tarifa por volumen. También
-          podemos ayudar a dar visibilidad a tus clases.
-        </p>
-      </div>
-      <div>
-        <p>Consulta cómo presentar tu actividad en la web y en el Instagram de Republikken.</p>
-        <a
-          class="button"
-          href={whatsapp('Hola, Fran. Me gustaría dar clases de forma regular en Republikken.')}
-          target="_blank"
-          rel="noopener noreferrer"
-          data-track="whatsapp_click"
-        >
-          Hablemos de tus clases <Icon name="diagonal" />
-        </a>
-      </div>
-    </section>
+    <>
+      <section class="wrap fitness-gallery" aria-labelledby="fitness-gallery-title">
+        <div>
+          <h2 id="fitness-gallery-title">Sala y material para moverte a tu manera.</h2>
+          <p>
+            Reserva la sala de yoga, pilates y fitness para entrenamiento personal uno a uno, en
+            pareja o en grupo reducido. Siempre en privado durante tu franja.
+          </p>
+        </div>
+        <Image
+          src={fitnessRoom}
+          alt="Sala de yoga, pilates y fitness de Republikken con suelo de madera y espejos"
+          width={900}
+          height={650}
+          widths={[480, 900]}
+          sizes="(max-width: 700px) 100vw, 50vw"
+          format="webp"
+          quality={82}
+          loading="lazy"
+        />
+        <Image
+          src={fitnessClass}
+          alt="Clase de yoga en la sala de yoga, pilates y fitness de Republikken"
+          width={650}
+          height={900}
+          widths={[420, 650]}
+          sizes="(max-width: 700px) 100vw, 32vw"
+          format="webp"
+          quality={82}
+          loading="lazy"
+        />
+      </section>
+      <section class="wrap quote-feature">
+        <div>
+          <h2>Alquila una sala profesional sin montar tu propio estudio.</h2>
+          <p>
+            Si quieres venir cada semana, hablamos de tus franjas y de una tarifa por volumen.
+            También podemos ayudar a dar visibilidad a tus clases.
+          </p>
+        </div>
+        <div>
+          <p>Consulta cómo presentar tu actividad en la web y en el Instagram de Republikken.</p>
+          <a
+            class="button"
+            href={whatsapp('Hola, Fran. Me gustaría dar clases de forma regular en Republikken.')}
+            target="_blank"
+            rel="noopener noreferrer"
+            data-track="whatsapp_click"
+          >
+            Hablemos de tus clases <Icon name="diagonal" />
+          </a>
+        </div>
+      </section>
+    </>
   )}
   <div class="related-band wrap">
     <p>

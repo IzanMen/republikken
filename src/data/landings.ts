@@ -50,7 +50,7 @@ export const landings = schema.array().parse(
         {
           question: '¿Cuánto cuesta alquilar un despacho por horas en Maó?',
           answer:
-            'Desde {{precio_despacho}} €/hora + IVA, con limpieza, suministros y climatización incluidos. Si necesitas muchas horas, consulta una tarifa adaptada a tu uso.',
+            'Desde {{precio_despacho}} €/hora + IVA, con todo incluido. Si necesitas muchas horas, consulta una tarifa adaptada a tu uso.',
         },
         {
           question: '¿Es un despacho privado o una mesa en una zona compartida?',
@@ -91,7 +91,7 @@ export const landings = schema.array().parse(
         },
         {
           title: 'Cursos y formaciones',
-          text: 'Hasta 24 personas con mesas para trabajar. Proyector, pantalla, altavoz y wifi para acompañar tu contenido.',
+          text: 'Hasta 24 personas con mesas para trabajar. También admitimos cursos y formación sanitaria. Proyector, pantalla, altavoz y wifi para acompañar tu contenido.',
         },
         {
           title: 'Encuentros profesionales',
@@ -107,7 +107,7 @@ export const landings = schema.array().parse(
         {
           question: '¿Qué incluye el alquiler de la sala de eventos?',
           answer:
-            'Proyector, pantalla, altavoz, wifi, limpieza, suministros y climatización. La sala no tiene luz natural y dispone de iluminación cuidada. Catering, montaje a medida y acompañamiento tienen presupuesto aparte.',
+            'Todo incluido: proyector, pantalla, altavoz, wifi, limpieza, suministros y climatización. La sala no tiene luz natural y dispone de iluminación cuidada. Catering, montaje a medida y acompañamiento tienen presupuesto aparte.',
         },
         {
           question: '¿Podéis organizar el catering?',
@@ -117,7 +117,12 @@ export const landings = schema.array().parse(
         {
           question: '¿Puedo combinar la sala con otros espacios?',
           answer:
-            'Sí. La sala de yoga contigua puede servir para recepción o demostraciones, y un despacho puede funcionar como sala auxiliar. Sujeto a disponibilidad y presupuesto.',
+            'Sí. La sala contigua puede servir para recepción o demostraciones, y un despacho puede funcionar como sala auxiliar. Sujeto a disponibilidad y presupuesto.',
+        },
+        {
+          question: '¿Se puede impartir formación sanitaria?',
+          answer:
+            'Sí. La sala de eventos admite cursos, talleres y formación sanitaria. Esta excepción se aplica a la formación en la sala de eventos; los despachos no admiten consultas ni actividades sanitarias.',
         },
       ],
       related: '/reuniones-empresas',
@@ -159,7 +164,7 @@ export const landings = schema.array().parse(
         {
           question: '¿Cuál es el precio de la sala de reuniones por horas?',
           answer:
-            'Desde {{precio_eventos}} €/hora + IVA. Incluye proyector, pantalla, altavoz, wifi, limpieza, suministros y climatización. El montaje a medida y el catering se presupuestan aparte.',
+            'Desde {{precio_eventos}} €/hora + IVA, con todo incluido: proyector, pantalla, altavoz, wifi, limpieza, suministros y climatización. El montaje a medida y el catering se presupuestan aparte.',
         },
         {
           question: '¿Es una sala diferente a la de eventos?',
@@ -178,10 +183,10 @@ export const landings = schema.array().parse(
     {
       slug: 'entrenadores-fitness',
       space: 'fitness',
-      title: 'Alquiler de sala de yoga y fitness en Maó | Republikken',
+      title: 'Sala de yoga, pilates y fitness en Maó | Republikken',
       description:
         'Sala privada de yoga, pilates y entrenamiento en Maó por {{precio_fitness}} €/h + IVA. Material incluido y uso exclusivo. Consulta tus horas.',
-      heading: 'ALQUILER DE SALA DE YOGA Y FITNESS',
+      heading: 'SALA DE YOGA, PILATES Y FITNESS',
       accent: 'EN MAÓ.',
       intro: 'Céntrate en tus alumnos y tus clientes. El espacio y el material ya están aquí.',
       sectionTitle: 'Una sala equipada para yoga, pilates y entrenamiento personal.',
@@ -203,9 +208,9 @@ export const landings = schema.array().parse(
       ],
       faqs: [
         {
-          question: '¿Cuánto cuesta alquilar la sala de yoga o fitness?',
+          question: '¿Cuánto cuesta alquilar la sala de yoga, pilates y fitness?',
           answer:
-            '{{precio_fitness}} €/hora + IVA. El precio incluye el uso privado de la sala, su material, limpieza, suministros y climatización. Para uso recurrente, consulta los descuentos por volumen.',
+            '{{precio_fitness}} €/hora + IVA, con todo incluido: uso privado de la sala, material, limpieza, suministros y climatización. Para uso recurrente, consulta los descuentos por volumen.',
         },
         {
           question: '¿Qué material de entrenamiento hay?',
@@ -216,6 +221,11 @@ export const landings = schema.array().parse(
           question: '¿La sala se comparte con otras personas?',
           answer:
             'No. La reserva te da uso exclusivo de la sala durante las horas contratadas. Puedes entrenar solo, con tu entrenador o con tu grupo.',
+        },
+        {
+          question: '¿Puedo reservarla para entrenamiento personal individual?',
+          answer:
+            'Sí. Puedes alquilar la sala para entrenamiento personal uno a uno y en privado. Durante la reserva, el entrenador y su cliente tienen el espacio en exclusiva.',
         },
         {
           question: '¿Puedo dar clases de forma regular?',

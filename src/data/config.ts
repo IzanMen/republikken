@@ -19,6 +19,7 @@ export const site = {
   maps: 'https://maps.app.goo.gl/N8jut3NzfJrWbjrJA',
   cobot: {
     general: 'https://republikken-mao.cobot.me/book',
+    passes: 'https://republikken-mao.cobot.me/',
     despacho: '', // [CONFIRMAR CON FRAN] URL profunda de cada recurso.
     eventos: '',
     fitness: '',
@@ -74,7 +75,7 @@ const allSpaces = spaceSchema.array().parse([
       'Despacho cerrado y amueblado',
       'Buena luz',
       'Acceso a zonas comunes',
-      'Limpieza y climatización',
+      'Todo incluido',
     ],
     site: 'mao',
   },
@@ -99,7 +100,7 @@ const allSpaces = spaceSchema.array().parse([
   },
   {
     id: 'fitness',
-    name: 'Sala de yoga y fitness',
+    name: 'Sala de yoga, pilates y fitness',
     shortName: 'Moverte',
     slug: '/entrenadores-fitness',
     price: rates.fitness,
@@ -126,7 +127,7 @@ const allSpaces = spaceSchema.array().parse([
     lead: 'Un despacho junto al puerto.',
     detail: 'Planta baja reformada con acceso a un patio común.',
     metric: 'Planta baja · Patio común',
-    includes: ['Despacho privado', 'Patio común', 'Limpieza y climatización'],
+    includes: ['Despacho privado', 'Patio común', 'Todo incluido'],
     site: 'miranda',
   },
 ]);
@@ -152,7 +153,7 @@ export const commonFAQ = faqSchema.array().parse([
   {
     question: '¿Qué está incluido en el precio?',
     answer:
-      'Limpieza, suministros y climatización. El despacho incluye acceso a zonas comunes; las salas, el equipamiento indicado en su ficha. Los precios se muestran sin IVA. El catering y los servicios de montaje o acompañamiento se presupuestan aparte.',
+      'Todo incluido: limpieza, suministros y climatización. El despacho incluye acceso a zonas comunes; las salas, el equipamiento indicado en su ficha. Los precios se muestran sin IVA. El catering y los servicios de montaje o acompañamiento se presupuestan aparte.',
   },
   {
     question: '¿Tengo que firmar un contrato de alquiler?',
@@ -162,7 +163,7 @@ export const commonFAQ = faqSchema.array().parse([
   {
     question: '¿Qué actividades no se pueden realizar?',
     answer:
-      'No acogemos fiestas privadas, música a alto volumen ni percusión. Tampoco actividades que requieren autorización sanitaria, como psicología clínica, fisioterapia o tratamientos con aparatología médica. Si tienes dudas sobre tu actividad, habla con Fran antes de reservar.',
+      'En los despachos no se admiten actividades que requieren autorización sanitaria, como psicología clínica, fisioterapia o tratamientos con aparatología médica. La sala de eventos sí admite cursos y formación sanitaria. No acogemos fiestas privadas, música a alto volumen ni percusión. Si tienes dudas, habla con Fran antes de reservar.',
   },
   {
     question: '¿Cómo accedo al espacio y qué pasa si cancelo?',
